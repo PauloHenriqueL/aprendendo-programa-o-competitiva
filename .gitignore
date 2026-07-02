@@ -1,0 +1,22 @@
+# Executaveis compilados (nao versionar)
+*.out
+a.out
+# binarios sem extensao gerados pelo g++ (ex: "g++ -o baralho baralho.cpp")
+zero
+torneio
+baralho
+tempo
+visto
+aquecimento
+aquecimento2
+votacao
+busca
+
+# Arquivos de teste locais
+*.txt
+input*
+output*
+
+# Editor / SO
+.vscode/
+.DS_Store
