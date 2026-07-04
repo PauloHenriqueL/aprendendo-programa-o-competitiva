@@ -128,12 +128,33 @@ NOTA: extração de dígitos/paridade vistos 1x — revisitar bastante.
 
 ---
 
-## MÓDULO 6 — Recursão e Backtracking ⬜
+## MÓDULO 6 — Recursão e Backtracking 🔁
 
 Teoria: pensar recursivamente; explorar todas as possibilidades.
-- [ ] Recursão (fatorial, Fibonacci, torre de Hanói)
-- [ ] Backtracking (permutações, subconjuntos, N-rainhas)
+- [x] Recursão (caso base + caso recursivo, pilha de chamadas) — 5x
+      Aquecimento `06-recursao/aquecimento_recursao.cpp` (R1-R5), todos AC:
+      R1 soma, R2 potencia, R3 somaDig, R4 contarParaBaixo, R5 fibonacci.
+      Lições fixadas: caso base ALCANÇÁVEL (= menor valor válido, senão
+      recursão infinita → stack overflow); caso base `void` NÃO imprime, só
+      para; imprimir antes×depois da chamada muda a ordem (descida×volta);
+      fib ingênuo é exponencial (2ⁿ) → semente da DP/memoização.
+- [x] Backtracking (árvore incluir/não-incluir) — subconjuntos.cpp (SIM/NÃO),
+      contar_subconjuntos.cpp (contagem, AC). Lição: DECIDE→`||`, CONTA→soma.
 Prática: gerar combinações, resolver labirintos simples.
+
+---
+
+## MÓDULO 6.5 — Memória dinâmica e Arquivos ✅ (feito, revisitar)
+
+Temas que o aluno viu em C e reaprendeu do jeito C++ idiomático.
+Pasta `07-memoria-arquivos/`; teoria em `teoria_memoria_arquivos.cpp`.
+- [x] Alocação de memória: malloc/free (C) vs new/delete vs **vector** (use!)
+- [x] `vector<int> v(n)` (1D) e `vector<vector<int>> m(l, vector<int>(c))` (2D)
+- [x] Arquivos: `ofstream` (=cout de arquivo), `ifstream` (=cin de arquivo)
+- [x] `while(fin>>x)` (ler até o fim), `if(!fin){...return;}` (tratar falha)
+- [x] Processar "em fluxo" (ler e já somar) → memória O(1) em vez de O(N)
+Aquecimento M1-M5, todos AC. REFORÇO CRÍTICO: overflow pegou o aluno 3x
+seguidas (soma acumulada precisa `long long`) — ainda não é reflexo.
 
 ---
 
@@ -178,6 +199,7 @@ Prática: problemas de DP de dificuldade crescente.
 - Módulo 2: 🔁 iniciado (pilha, vector, pair — cada 1x, muito a reforçar)
 - Módulo 3: 🔁 iniciado (sort — 1x, muito a reforçar)
 - Módulo 5: 🔁 iniciado (dígitos, paridade — 1x)
+- Módulo 6: 🔁 recursão introduzida (5 aquecimentos AC); falta backtracking
 - Demais: ⬜
 
 Lembrete: NENHUM conceito atingiu ~10 repetições. "Iniciado" ≠ "aprendido".

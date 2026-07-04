@@ -85,6 +85,38 @@ Desafios de estrutura nova:
 - `votacao.cpp` — ✅ AC (map: contar strings, achar vencedor)
 - `busca.cpp` — ✅ AC (BUSCA BINÁRIA; passou N=Q=100k em ~117ms)
 
+Recursão (`06-recursao/aquecimento_recursao.cpp`) — CONCLUÍDO ✅ (5/5):
+| Problema | Conceito | Status |
+|----------|----------|--------|
+| R1 soma 1..N | recursão numérica, caso base | ✅ AC |
+| R2 potencia | reduzir expoente (bug real: caso base exp==1 crashava exp=0) | ✅ AC |
+| R3 somaDig | recursão + `%` e `/` | ✅ AC |
+| R4 contarParaBaixo | ordem impressão; caso base `void` só para (bug `= vs ==`) | ✅ AC |
+| R5 fibonacci | dois casos base, dois ramos; exponencial→DP | ✅ AC (de primeira) |
+
+Backtracking / árvore incluir-não-incluir (`06-recursao/`):
+- `subconjuntos.cpp` — subset-sum SIM/NÃO (referência; esqueleto veio cheio
+  demais, encerrado como material de leitura).
+- `contar_subconjuntos.cpp` — ✅ AC. CONTAR subconjuntos que somam o alvo.
+  Lição-chave fixada: recursão que **DECIDE** (SIM/NÃO) combina ramos com
+  `||`; recursão que **CONTA** SOMA os ramos (`ramoA + ramoB`), igual ao fib.
+  O aluno reaproveitou o padrão `if(...) return 1` (decidir) num problema de
+  contar — precisou de 3 tentativas até trocar por `semEle + comEle`.
+
+Memória & Arquivos (`07-memoria-arquivos/`) — CONCLUÍDO ✅ (5/5):
+Teoria em `teoria_memoria_arquivos.cpp` (malloc/new/vector; FILE*/fstream).
+| Problema | Conceito | Status |
+|----------|----------|--------|
+| M1 vetor dinâmico | `vector<int> v(n)`; soma `long long`; max começa em v[0]/INT_MIN (bug: usava v[1], crash N=1) | ✅ AC |
+| M2 matriz dinâmica | `vector<vector<int>> m(l, vector<int>(c))`; versão elegante processa "em fluxo" O(1) mem | ✅ AC |
+| M3 escrever arquivo | `ofstream fout("res.txt"); fout << x;` (o "cout de arquivo") | ✅ AC |
+| M4 ler arquivo até o fim | `ifstream`; `while(fin>>x)`; `if(!fin){...return;}`; contar (bug `cont` sem init) | ✅ AC |
+| M5 ler→ordenar→escrever | ifstream+vector<string>+sort+ofstream; for-range no vetor (não na string) | ✅ AC |
+⚠️ Overflow pegou o aluno 3x seguidas (M1,M3,M4): "soma pode não caber em int"
+→ `long long`. Ainda NÃO é reflexo — continuar reforçando.
+Idiomático C++: vector (não malloc), fstream (não FILE*). Processar "em fluxo"
+(ler e já somar) economiza memória — insight de competição.
+
 Aquecimento 2 (`aquecimento2.cpp`) — CONCLUÍDO ✅ (5/5):
 | Problema | Conceito | Status |
 |----------|----------|--------|
@@ -127,12 +159,12 @@ Atualizar o contador a cada vez que o aluno usa o conceito num problema.
 | `'c'` (char) vs `"c"` (string) | 1 | aquec-D |
 | pop/top só com `!empty()` | 2 | zero, aquec-D |
 | Funções (params, retorno, locais) | 2 | baralho, gemas |
-| `=` vs `==` | 1 | baralho |
+| `=` vs `==` (bug clássico, `-Wall` avisa) | 3 | baralho, aquec-G, contarParaBaixo |
 | Big-O (tempo/memória) | 4 | zero, torneio, baralho, gemas |
 | Simulação com estado (relógio) | 0 | (tempo — em andamento) |
-| **Ordenação (`sort`)** | 5 | horarios, aquec-C, C_array, aquec2-I/K |
-| **`vector`** | 6 | horarios, aquec-B/C, aquec2-H?/I/K/L |
-| máx/mín (não iniciar com 0!) | 1 | aquec-B |
+| **Ordenação (`sort`)** | 6 | horarios, aquec-C, C_array, aquec2-I/K, M5 |
+| **`vector`** | 8 | horarios, aquec-B/C, aquec2, M1/M2/M5 |
+| máx/mín (não iniciar com 0!) | 2 | aquec-B, M1(bug: v[1] em vez de v[0]) |
 | **Busca binária** (O(log n), meio anti-overflow) | 1 | busca.cpp |
 | busca linear (contraste com binária) | 1 | aquec2-L |
 | mediana = elemento em v[n/2] (ordenado) | 1 | aquec2-K |
@@ -147,6 +179,21 @@ Atualizar o contador a cada vez que o aluno usa o conceito num problema.
 | **atribuições compostas** (`/=`, `+=`, `++`) | 3 | promocao, _otima, recall |
 | **loop de dígitos compacto** `for(x=i;x>0;x/=10)` | 2 | promocao_otima, recall |
 | **getline / cin.ignore** (misturar com `cin >>`) | 1 | revisão + exemplo rodado |
+| **Recursão** (caso base + caso recursivo, pilha de chamadas) | 5 | R1-R5 aquecimento_recursao |
+| caso base ALCANÇÁVEL (= menor valor; senão recursão∞→stack overflow) | 2 | potencia(bug real), contarParaBaixo |
+| caso base `void` NÃO imprime, só para (vs caso base que retorna valor) | 1 | contarParaBaixo |
+| ordem: imprimir ANTES×DEPOIS da chamada (descida×volta) | 1 | contarParaBaixo |
+| fib ingênuo é exponencial (2ⁿ) → semente da DP/memoização | 1 | fib R5 |
+| **Backtracking** (árvore incluir/não-incluir, 2 chamadas por elemento) | 2 | subconjuntos, contar_subconjuntos |
+| recursão DECIDE (`||`) vs CONTA (soma ramos `+`) — não misturar! | 1 | contar_subconjuntos (bug real) |
+| `vector.resize(n)` / `vector<int> v(n)` (dimensionar em runtime) | 2 | contar_subconjuntos, M1 |
+| **Matriz 2D** `vector<vector<int>> m(l, vector<int>(c))` | 1 | M2 |
+| **Overflow: soma acumulada → `long long`** ("não cabe em int") | 3 | M1, M3, M4 (pegou 3x!) |
+| variável não-inicializada = lixo (`int cont=0`, `-Wall` avisa) | 1 | M4 (bug real) |
+| **Arquivos: `ofstream` = cout de arquivo, `ifstream` = cin de arquivo** | 1 | M3, M4, M5 |
+| ler arquivo até o fim `while(fin>>x)` + `if(!fin){...return;}` | 1 | M4, M5 |
+| processar "em fluxo" (ler e já somar, não guardar) = O(1) mem | 1 | M2_otima |
+| C++ idiomático: vector>new>malloc; fstream>FILE* | 1 | teoria módulo 07 |
 
 ⚠️ ATENÇÃO ESPECIAL (pedido do aluno em 2026-06-30): ele quer FIXAR por
 repetição espaçada os "modelos de for" — blocos sem chaves, for-range, e o
