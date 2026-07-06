@@ -1,24 +1,76 @@
 # Plano de Estudo — Programação Competitiva
 
-Objetivo: preparar o Paulo para competições (OBI, maratonas, ICPC),
-cobrindo os pontos mais importantes e **todas as estruturas de dados**
-essenciais. Método: **30% teoria / 70% prática** com problemas reais de
-olimpíadas e maratonas. O aluno resolve; o Claude é juiz.
+Objetivo: preparar o Paulo para competições (OBI, maratonas, ICPC), cobrindo
+estruturas de dados E **paradigmas de resolução** (guloso, dois ponteiros,
+força bruta, backtracking, DP...). Meta prática: resolver Codeforces 800 com
+autonomia e subir a partir daí. O aluno resolve; o Claude é juiz.
 
-## Princípio central: REPETIÇÃO ESPAÇADA
+## MÉTODO DIÁRIO (decidido 2026-07-04) — mínimo 10 exercícios/dia
 
-Ver um tópico uma vez ≠ aprendê-lo. Cada conceito e estrutura de dados deve
-ser **revisitado no mínimo ~10 vezes**, em problemas diferentes, ao longo do
-tempo, para fixar na memória de longo prazo. Por isso:
+O estudo raso (poucas perguntas + 4 aquecimentos + 1 novo) acabou. Todo dia
+segue este fluxo, com NO MÍNIMO 10 exercícios:
 
-- Os módulos NÃO são "faça uma vez e siga". Conceitos antigos reaparecem de
-  propósito em problemas novos (ex.: array de contagem volta em vários
-  módulos).
-- Um `[x]` aqui significa "já foi introduzido/praticado ao menos uma vez",
-  **não** "dominado". O domínio vem da contagem de repetições (ver CLAUDE.md).
-- Sessões devem misturar: ~1 conceito novo + reforço de 1-2 antigos.
+1. **DISCUSSÃO INICIAL (recall ativo, estilo prova):** o Claude faz perguntas
+   sobre conceitos já vistos — o aluno responde de cabeça, sem código. Serve
+   para reativar a memória e diagnosticar o que enferrujou.
+2. **AQUECIMENTO — 8 exercícios:**
+   - **4 exercícios** que cobram conceitos JÁ VISTOS (reforço espaçado dirigido
+     — priorizar os que o aluno mais ERRA; ver painel abaixo).
+   - **4 exercícios variados** que relembram o que será necessário para o
+     problema principal do dia (preparam o terreno para o conceito novo).
+3. **CONCEITO NOVO — 2 exercícios:** um arquivo com o conceito explicado em
+   COMENTÁRIO + 2 problemas para o aluno aplicar/implementar o conceito novo.
+
+Total: 8 + 2 = 10 exercícios mínimos por dia (fora a discussão inicial).
+
+## CONTROLE DE DESEMPENHO (o plano é um PAINEL)
+
+Este arquivo controla 4 coisas, não só "o que estudar":
+- **O que o aluno JÁ VIU** (introduzido) × **NÃO VIU** (⬜).
+- **O que ele vai BEM** (acerta de primeira/poucas tentativas) × **vai MAL**
+  (erra muito, precisa refazer).
+
+Regra de avanço/trava (repetição espaçada dirigida por desempenho):
+- Conceito que o aluno **mais ACERTA** → AVANÇA (🔁→🏆); para de repetir tanto,
+  liberando espaço para o que ele erra.
+- Conceito que o aluno **mais ERRA** → FICA PARADO (não avança); é
+  deliberadamente reintroduzido nos próximos aquecimentos até firmar.
+- A contagem fina de repetições e o histórico de bugs ficam no CLAUDE.md
+  (tabela "Conceitos praticados" + painel de erros recorrentes).
 
 Legenda: ✅ introduzido (≥1x) · 🔁 em reforço · 🏆 consolidado (~10x) · ⬜ a fazer
+Desempenho: 🟢 vai bem (acerta) · 🟡 instável · 🔴 erra muito (REFORÇAR!)
+
+## PAINEL DE DESEMPENHO (atualizar a cada sessão)
+
+🔴 ERRA MUITO (reforçar de propósito, NÃO avançar):
+- **Índice fora do vetor** (`v[i+1]` no último, `v[1]` com n=1) — recorrente.
+  (No recall 2026-07-05 acertou a REGRA, mas confundiu o nome com "overflow";
+  manter reforçando na prática até virar reflexo em código.)
+- **Variável não-inicializada** (`int cont;` → lixo).
+
+🟡 INSTÁVEL (melhorando — confirmar na prática):
+- **Overflow → `long long`**: acertou de cabeça no recall (2026-07-05),
+  incluindo o limite ~2,1e9 do int. Melhorou de 🔴 para 🟡. Confirmar em
+  código nas próximas sessões antes de dar 🟢.
+- **Comparação encadeada `a<b<c`**: explicou perfeitamente no recall
+  (vira `(a<b)<c`, usar `&&`). Subiu de 🔴 para 🟡. Confirmar em código.
+- Recursão que DECIDE (`||`) × CONTA (`+`) — confundiu 1x.
+- Tratar tamanho ímpar / usar `size()` atual, não `n` fixo.
+- Casos de borda inclusivos (`<=` vs `<`).
+
+🟢 VAI BEM (pode avançar, repetir menos):
+- Leitura/IO, vector dinâmico, laços básicos, sort, MDC/Euclides (acertou
+  implementando na mão E de cabeça no recall), simulação (resolveu o
+  DinoVoice ~1000!). Definição de recursão (caso base + recursivo) — recall OK.
+- **Ideia do GULOSO**: no recall 2026-07-05 descreveu sozinho a estratégia
+  gulosa do troco (maior moeda primeiro) SEM saber o nome. Base pronta.
+
+⬜ NÃO VIU AINDA (buracos a preencher — vários são cobrados em CF 800!):
+- **Algoritmo GULOSO** (crítico! cobrado em muitos 800 — ver Módulo 5.6).
+- **BITS / binário** (pedido do aluno — Módulo 5.5).
+- Dois ponteiros como técnica consciente, força bruta inteligente, `set`,
+  grafos, DP.
 
 ---
 
@@ -119,12 +171,57 @@ Teoria: o essencial que cai muito.
 - [x] Operadores `%` (resto) e `/` (divisão inteira) — feito no `promocao`
 - [x] Extração de dígitos (`x%10`, `x/=10`) — feito no `promocao` — 1x
 - [x] Paridade (`% 2`) — feito no `promocao` — 1x
-- [ ] Aritmética modular, MDC/MMC (Euclides)
+- [x] **MDC (Euclides)** — feito no `09-codeforces` G/Gondwana (AC). Aluno
+      implementou `mdc(a,b)=mdc(b,a%b)` recursivo na mão; usou para simplificar
+      fração `P/100` → denominador irredutível. 1x.
+- [ ] MMC; aritmética modular
 - [ ] Crivo de Eratóstenes, primalidade
 - [ ] Exponenciação rápida; noções de combinatória
-- [ ] Overflow: quando usar `long long`
+- [x] **Overflow: quando usar `long long`** — reforçado MUITO (M1,M3,M4 pegaram
+      3x: soma acumulada; popcount: multiplicação `pego*custo`). Ainda não é
+      reflexo — CONTINUAR reforçando.
 Prática: problemas de teoria dos números de olimpíadas.
 NOTA: extração de dígitos/paridade vistos 1x — revisitar bastante.
+
+---
+
+## MÓDULO 5.5 — Representação BINÁRIA e BITS ⬜ (PEDIDO DO ALUNO — prioritário)
+
+⚠️ Aluno pediu explicitamente (2026-07-04) para colocar "entender bits" no
+plano. Ele NÃO domina binário ainda — travou no problema popcount (Codeforces)
+justamente por isso. Ensinar do ZERO, bem devagar, com muitos exemplos.
+- [ ] O que é base 2: como um número vira 0s e 1s (contar em binário)
+- [ ] Converter decimal↔binário na mão; peso de cada posição (1,2,4,8,...)
+- [ ] Bit "ligado/desligado"; `popcount` (quantos bits 1)
+- [ ] Operadores bit a bit: `&` (E), `|` (OU), `^` (XOR), `~`, `<<`, `>>`
+- [ ] Truques comuns: `x & 1` (par/ímpar), `x << 1` (dobrar), `x >> 1` (metade),
+      testar/ligar/desligar um bit, `x & (x-1)` (tira o último bit 1)
+- [ ] `__builtin_popcount`, `__builtin_clz` (ferramentas prontas)
+Prática: exercícios pequenos SÓ de manipular bits, antes de qualquer problema
+que dependa disso. Depois, revisitar o popcount (Codeforces) que ficou pendente.
+Material: criar um `teoria_bits.cpp` com exemplos rodados.
+
+---
+
+## MÓDULO 5.6 — Algoritmo GULOSO (Greedy) ⬜ ⭐ PRÓXIMO PASSO — PRIORIDADE MÁXIMA
+
+⭐ COMEÇAR POR AQUI na próxima sessão. Motivo: guloso é cobrado em MUITOS
+problemas Codeforces 800 (o piso!), e a ausência dele fez o aluno travar num
+800 e se desmotivar (achou que estava "muito atrás" — não está; faltava ESTE
+paradigma). Falha de planejamento minha (Claude) não ter posto antes. É o
+maior "buraco" que separa o aluno de resolver 800 sozinho.
+
+⚠️ Aluno pediu (2026-07-04) para adicionar. É um paradigma novo — ensinar a
+IDEIA antes de aplicar. O popcount é guloso (pegar bits baratos primeiro), por
+isso ficou difícil sem essa base.
+- [ ] Ideia: a cada passo, escolher a opção localmente melhor (sem voltar atrás)
+- [ ] Quando funciona e quando NÃO funciona (guloso nem sempre dá o ótimo!)
+- [ ] Clássicos didáticos: troco com moedas, atividades que não conflitam,
+      "pegar o mais barato/valioso primeiro" (ordenar + varrer)
+- [ ] Contraste guloso × backtracking × DP (quando cada um serve)
+Prática: problemas gulosos simples com prova de que a escolha gulosa é ótima.
+PENDENTE por causa disso: `09-codeforces/popcount.cpp` (guloso por camadas de
+bits) — retomar DEPOIS de bits + guloso.
 
 ---
 
