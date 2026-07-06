@@ -11,13 +11,27 @@ e a **solução comentada**, com a análise de complexidade (Big-O).
 
 ## 📂 Como o repositório está organizado
 
+Os **módulos de assunto** (a trilha de estudo, em ordem) são numerados. As
+pastas de **apoio** (aquecimentos, referência, contests, codeforces) não têm
+número.
+
+### Módulos de assunto (trilha de estudo)
 | Pasta | Tema | Conteúdo |
 |-------|------|----------|
-| [`00-referencia/`](00-referencia/) | 📖 Caderno de conceitos | `visto.cpp` — todos os conceitos vistos, com exemplos comentados (consulta rápida) |
-| [`02-simulacao-obi2021/`](02-simulacao-obi2021/) | 🎯 OBI 2021 (Fase 1, Sênior) | Prova completa: `zero`, `torneio`, `baralho`, `tempo` |
-| [`03-aquecimentos/`](03-aquecimentos/) | 🔥 Revisão | `aquecimento.cpp` (7 problemas) e `aquecimento2.cpp` (5 problemas) |
-| [`04-estruturas-associativas/`](04-estruturas-associativas/) | 🗺️ Map | `votacao.cpp` — apuração de votos com `map` |
-| [`05-busca/`](05-busca/) | 🔍 Busca | `busca.cpp` — busca binária (manual + `binary_search`) |
+| [`01-simulacao/`](01-simulacao/) | 🎯 Simulação (OBI 2021) | `zero`, `torneio`, `baralho`, `tempo` |
+| [`02-estruturas-associativas/`](02-estruturas-associativas/) | 🗺️ Map | `votacao.cpp` — apuração de votos |
+| [`03-busca/`](03-busca/) | 🔍 Busca | `busca.cpp` — busca binária (manual + `binary_search`) |
+| [`04-recursao/`](04-recursao/) | 🔁 Recursão/Backtracking | `subconjuntos`, `contar_subconjuntos` |
+| [`05-memoria-arquivos/`](05-memoria-arquivos/) | 💾 Memória e arquivos | `teoria_memoria_arquivos.cpp` |
+| [`06-guloso/`](06-guloso/) | 🍰 Algoritmo guloso | `conceito_guloso`, `pratica_pair_guloso` |
+
+### Pastas de apoio
+| Pasta | Conteúdo |
+|-------|----------|
+| [`aquecimentos/`](aquecimentos/) | 🔥 Todos os aquecimentos, por tema (geral, recursão, memória, guloso) |
+| [`referencia/`](referencia/) | 📖 `visto.cpp` — caderno de conceitos vistos (consulta rápida) |
+| [`contests/`](contests/) | 🏆 Provas reais resolvidas (upsolving). Ex.: `udesc-2026-1` |
+| [`codeforces/`](codeforces/) | 💻 Problemas avulsos do Codeforces (com link/ID) |
 
 Roteiro de estudos completo: [`PLANO_DE_ESTUDO.md`](PLANO_DE_ESTUDO.md)
 

@@ -180,7 +180,7 @@ Teoria: o essencial que cai muito.
 - [x] Operadores `%` (resto) e `/` (divisão inteira) — feito no `promocao`
 - [x] Extração de dígitos (`x%10`, `x/=10`) — feito no `promocao` — 1x
 - [x] Paridade (`% 2`) — feito no `promocao` — 1x
-- [x] **MDC (Euclides)** — feito no `09-codeforces` G/Gondwana (AC). Aluno
+- [x] **MDC (Euclides)** — feito no `contests/udesc-2026-1` G/Gondwana (AC). Aluno
       implementou `mdc(a,b)=mdc(b,a%b)` recursivo na mão; usou para simplificar
       fração `P/100` → denominador irredutível. 1x.
 - [ ] MMC; aritmética modular
@@ -244,7 +244,7 @@ isso ficou difícil sem essa base.
       "pegar o mais barato/valioso primeiro" (ordenar + varrer)
 - [ ] Contraste guloso × backtracking × DP (quando cada um serve)
 Prática: problemas gulosos simples com prova de que a escolha gulosa é ótima.
-PENDENTE por causa disso: `09-codeforces/popcount.cpp` (guloso por camadas de
+PENDENTE por causa disso: `codeforces/popcount.cpp` (guloso por camadas de
 bits) — retomar DEPOIS de bits + guloso.
 
 ---
@@ -253,7 +253,7 @@ bits) — retomar DEPOIS de bits + guloso.
 
 Teoria: pensar recursivamente; explorar todas as possibilidades.
 - [x] Recursão (caso base + caso recursivo, pilha de chamadas) — 5x
-      Aquecimento `06-recursao/aquecimento_recursao.cpp` (R1-R5), todos AC:
+      Aquecimento `aquecimentos/aquecimento_recursao.cpp` (R1-R5), todos AC:
       R1 soma, R2 potencia, R3 somaDig, R4 contarParaBaixo, R5 fibonacci.
       Lições fixadas: caso base ALCANÇÁVEL (= menor valor válido, senão
       recursão infinita → stack overflow); caso base `void` NÃO imprime, só
@@ -268,7 +268,7 @@ Prática: gerar combinações, resolver labirintos simples.
 ## MÓDULO 6.5 — Memória dinâmica e Arquivos ✅ (feito, revisitar)
 
 Temas que o aluno viu em C e reaprendeu do jeito C++ idiomático.
-Pasta `07-memoria-arquivos/`; teoria em `teoria_memoria_arquivos.cpp`.
+Pasta `05-memoria-arquivos/` (aquecimento em `aquecimentos/aquecimento_memoria.cpp`).
 - [x] Alocação de memória: malloc/free (C) vs new/delete vs **vector** (use!)
 - [x] `vector<int> v(n)` (1D) e `vector<vector<int>> m(l, vector<int>(c))` (2D)
 - [x] Arquivos: `ofstream` (=cout de arquivo), `ifstream` (=cin de arquivo)

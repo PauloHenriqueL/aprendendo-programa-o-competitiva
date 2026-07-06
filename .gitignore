@@ -1,16 +1,17 @@
 # Executaveis compilados (nao versionar)
 *.out
 a.out
-# binarios sem extensao gerados pelo g++ (ex: "g++ -o baralho baralho.cpp")
+# binarios sem extensao gerados pelo g++ (mesmo nome do .cpp), em qualquer pasta
 zero
 torneio
 baralho
 tempo
 visto
-aquecimento
-aquecimento2
 votacao
 busca
+sol
+main
+solucao
 
 # Arquivos de teste locais
 *.txt
