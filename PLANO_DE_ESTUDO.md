@@ -44,9 +44,14 @@ Desempenho: 🟢 vai bem (acerta) · 🟡 instável · 🔴 erra muito (REFORÇA
 ## PAINEL DE DESEMPENHO (atualizar a cada sessão)
 
 🔴 ERRA MUITO (reforçar de propósito, NÃO avançar):
+- **`vector<int> v;` VAZIO + `cin >> v[i]`** → crash! Precisa `vector<int> v(n)`
+  antes de indexar (ou push_back). Pegou 2x no mesmo dia (A3 e A5, 2026-07-05).
+  NOVO bug recorrente — reforçar até fixar.
 - **Índice fora do vetor** (`v[i+1]` no último, `v[1]` com n=1) — recorrente.
-  (No recall 2026-07-05 acertou a REGRA, mas confundiu o nome com "overflow";
-  manter reforçando na prática até virar reflexo em código.)
+  (No recall 2026-07-05 acertou a REGRA; manter reforçando na prática.)
+- **`<` vs `<=` (borda inclusiva)** — acertou no A2 mas errou no A7 no MESMO dia.
+  Ainda instável em contexto. Reforçar.
+- **Ler o enunciado com atenção** (A7: pediu CONTAGEM, ele deu SOMA).
 - **Variável não-inicializada** (`int cont;` → lixo).
 
 🟡 INSTÁVEL (melhorando — confirmar na prática):
@@ -63,8 +68,12 @@ Desempenho: 🟢 vai bem (acerta) · 🟡 instável · 🔴 erra muito (REFORÇA
 - Leitura/IO, vector dinâmico, laços básicos, sort, MDC/Euclides (acertou
   implementando na mão E de cabeça no recall), simulação (resolveu o
   DinoVoice ~1000!). Definição de recursão (caso base + recursivo) — recall OK.
-- **Ideia do GULOSO**: no recall 2026-07-05 descreveu sozinho a estratégia
-  gulosa do troco (maior moeda primeiro) SEM saber o nome. Base pronta.
+- **GULOSO**: descreveu a ideia no recall, resolveu A7/A8/G1 e implementou o
+  ACTIVITY SELECTION sozinho (H1, AC de primeira após estudar a teoria!).
+  Paradigma que faltava — AGORA ele tem. Subiu de ⬜ para 🟢.
+- **`vector<pair>` + `sort` + structured binding** `for(auto&[a,b]:v)`:
+  implementou o H1 corretamente. Sabe a distinção pair×map (ordenar lista ×
+  buscar por chave). Era 🔴 no G2, virou 🟢 no H1.
 
 ⬜ NÃO VIU AINDA (buracos a preencher — vários são cobrados em CF 800!):
 - **Algoritmo GULOSO** (crítico! cobrado em muitos 800 — ver Módulo 5.6).
@@ -203,7 +212,22 @@ Material: criar um `teoria_bits.cpp` com exemplos rodados.
 
 ---
 
-## MÓDULO 5.6 — Algoritmo GULOSO (Greedy) ⬜ ⭐ PRÓXIMO PASSO — PRIORIDADE MÁXIMA
+## MÓDULO 5.6 — Algoritmo GULOSO (Greedy) 🔁 INTRODUZIDO 2026-07-05
+
+STATUS: introduzido com sucesso! Aquecimento (8 AC) + conceito formal +
+2 problemas. O aluno JÁ tinha a intuição (descreveu no recall). Fixado:
+- Esqueleto do guloso: ORDENAR + VARRER uma vez = O(N log N).
+- Guloso NEM SEMPRE da o otimo (provado com moedas {1,3,4}, troco 6:
+  guloso=3, otimo=2). Desconfiar; na duvida testar vs forca bruta.
+- G1 (menor tempo espera): AC — soma corrente com 2 acumuladores empilhados
+  (acumular+=t; total+=acumular). Aluno travou na LOGICA do acumulado,
+  destravou. Overflow pegou de novo (→ long long).
+- G2 (activity selection): estudado como referencia. Licoes: map ≠ vector+sort
+  (map=buscar por chave; ordenar lista=vector+sort); manter dados da mesma
+  entidade JUNTOS num pair (nao ordenar campos separados!); ordenar pelo FIM;
+  comparar com ultima ESCOLHIDA, nao vizinho. Retomar G2 para ele implementar.
+Continuar com mais gulosos (Codeforces 800-1000). PENDENTE ainda: popcount
+(guloso+bits) — falta o modulo de BITS (5.5).
 
 ⭐ COMEÇAR POR AQUI na próxima sessão. Motivo: guloso é cobrado em MUITOS
 problemas Codeforces 800 (o piso!), e a ausência dele fez o aluno travar num

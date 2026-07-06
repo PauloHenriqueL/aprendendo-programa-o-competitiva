@@ -1,3 +1,6 @@
+#include <bits/stdc++.h>
+using namespace std;
+
 /*
 ============================================================================
   AQUECIMENTO DO DIA — 8 exercicios (4 reforco + 4 preparatorios p/ GULOSO)
@@ -28,6 +31,18 @@
 
 */
 
+void A1(){
+  long long soma = 0;
+  int n; cin >> n;
+  for(int i = 0; i < n; i++){
+    int x;
+    cin >> x;
+    soma += x;
+  }
+  cout << soma;
+
+}
+
 
 
 /*
@@ -48,7 +63,15 @@
   Peça dica se precisar;
 */
 
-
+void A2(){
+  int x, a, b;
+  cin >> x >> a >> b;
+  if(a <= x && x <= b){
+    cout << "DENTRO";
+  } else {
+    cout << "FORA";
+  }
+}
 
 
 
@@ -72,11 +95,21 @@
 
 */
 
-
-
-
-
-
+void A3(){
+  int n; cin >>n;
+  vector<int> vetor(n);
+  for(int i = 0; i < n; i++){
+    cin >> vetor[i];
+  }
+  int maior = vetor[0], posi = 1;
+  for(int i = 0; i < n; i++){
+    if(vetor[i] > maior){
+      maior = vetor[i];
+      posi = i + 1;
+    }
+  }
+  cout << maior << " " << posi << "\n";
+}
 
 
 
@@ -97,7 +130,10 @@
   Peça dica se precisar;
 */
 
-
+int A4(int a, int b){
+  if(b == 0) return a;
+  return A4(b, a % b);
+}
 
 
 
@@ -125,7 +161,17 @@
 */
 
 
-
+void A5(){
+  int n; cin >> n;
+  vector<int> vetor(n);
+  for(int i =0; i < n; i++){
+    cin >> vetor[i];
+  }
+  sort(vetor.begin(), vetor.end());
+  for(int valor : vetor){
+    cout << valor << " ";
+  }
+}
 
 
 
@@ -158,10 +204,19 @@
 
 
 
-
-
-
-
+void A6(){
+  int n, k; cin >> n >> k;
+  vector<int> vetor(n);
+  long long soma = 0;
+  for(int i = 0; i < n; i++){
+    cin >> vetor[i];
+  }
+  sort(vetor.begin(), vetor.end());
+  for(int i = n-k; i < n; i++){
+    soma += vetor[i];
+  }
+  cout << soma << "\n";
+}
 
 
 
@@ -187,10 +242,24 @@
 */
 
 
-
-
-
-
+void A7(){
+  int n, salario; cin >> n >> salario;
+  vector<int> produtos;
+  int cont = 0;
+  for(int i = 0; i < n; i++){
+    int x;
+    cin >> x;
+    produtos.push_back(x);
+  }
+  sort(produtos.begin(), produtos.end());
+  for(int valor : produtos){
+    if(valor <= salario){
+      cont++;
+      salario -= valor;
+    }
+  }
+  cout << cont << "\n";
+}
 
 
 
@@ -212,3 +281,32 @@
 
 ============================================================================
 */
+
+
+void A8(){
+  int valor, cont = 0; cin >> valor;
+// 50, 25, 10, 5 e 1
+  while(valor >= 50){
+    valor -= 50;
+    cont++;
+  }
+  while(valor >= 25){
+    valor -= 25;
+    cont++;
+  }
+  while(valor >= 10){
+    valor -= 10;
+    cont++;
+  }
+  while(valor >= 5){
+    valor -= 5;
+    cont++;
+  }
+  while(valor >= 1){
+    valor -= 1;
+    cont++;
+  }
+  cout << cont << "\n";
+
+}
+

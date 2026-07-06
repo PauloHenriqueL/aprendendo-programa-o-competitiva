@@ -180,7 +180,21 @@ Codeforces (`09-codeforces/`) — problemas REAIS (ver [[fonte-problemas]]):
 - `popcount.cpp` ("Another Popcount Problem") — PENDENTE. É guloso por camadas de
   bits. O aluno pediu para PARAR: não domina binário/bits ainda. Estratégia já
   validada por força bruta (greedy: pegar bits baratos primeiro, min(k, n/custo)
-  por camada, custo *= 2). Retomar DEPOIS dos módulos 5.5 (bits) e 5.6 (guloso).
+  por camada, custo *= 2). Retomar DEPOIS do módulo 5.5 (bits).
+- `watermellon.cpp` (CF 4A) — ✅ AC. Pegadinha `w>2` (2 não divide em 2 pares positivos).
+- `toolong.cpp` (CF 71A) — abreviar palavra longa (>10). (verificar status.)
+
+DIA GULOSO (2026-07-05, método novo 10 exercícios) — `09-codeforces/`:
+- `aquecimento_dia_guloso.cpp` — 8 aquecimentos, TODOS AC. Bugs fixados:
+  `vector<int> v;` VAZIO + `cin>>v[i]` = crash (pegou 2x! A3,A5); índice fixo
+  em loop (A6); ler enunciado (A7 contagem×soma); `<`×`<=` (A7); sincronizar
+  posição com v[0] (A3 posi=1).
+- `conceito_guloso.cpp` — teoria (guloso NEM SEMPRE ótimo: {1,3,4}) + G1 (menor
+  tempo espera, AC: soma corrente com 2 acumuladores; overflow de novo) + G2
+  (activity selection — referência; bug: map errado, vetores separados).
+- `pratica_pair_guloso.cpp` — teoria detalhada de pair/vector<pair>/map/LLONG_MIN
+  + H1 (activity selection). ✅ AC IMPLEMENTADO SOZINHO após estudar a teoria.
+  Marco: paradigma guloso + pair DOMINADOS. Ver [[nivel-e-motivacao]].
 
 ⚠️ PEDIDO DO ALUNO (2026-07-04): adicionar ao plano "entender BITS/binário" e
 "algoritmo GULOSO" — ele reconhece que não domina bits (problema pessoal, ensinar
@@ -273,6 +287,17 @@ Atualizar o contador a cada vez que o aluno usa o conceito num problema.
 | comparar com vizinhos `v[i]` vs `v[i-1]`/`v[i+1]` (picos) | 1 | N-ceratops |
 | **`i += 2` (não `i+2`!)** avançar de 2 em 2; `-Wall` "has no effect" | 1 | D DinoVoice (bug real) |
 | múltiplos casos de teste (`cin>>t; while(t--)`) | 0 | (popcount — pendente) |
+| **Algoritmo GULOSO** (ordenar + varrer; NEM SEMPRE ótimo!) | 4 | A7, A8, G1, H1 |
+| guloso: ordenar + varrer 1x = O(N log N) | 3 | A7, G2, H1 |
+| **`vector<pair>` + sort** (ordenar lista de itens) | 2 | G2(bug), H1(AC) |
+| pair×map: ordenar lista → vector<pair>; buscar chave → map | 1 | H1 (lição) |
+| manter dados da MESMA entidade juntos (não ordenar campos separados!) | 1 | G2 (bug real) |
+| **structured binding** `for(auto&[a,b]:v)` | 1 | H1 |
+| **`INT_MIN`/`LLONG_MIN`** p/ inicializar "nada escolhido/máximo" | 2 | M1, H1 |
+| **soma corrente** (2 acumuladores empilhados: acumular+=x; total+=acumular) | 1 | G1 |
+| **Overflow → `long long`** (soma acumulada) | 5 | M1,M3,M4,A1,G1 (5x!) |
+| `vector<int> v;` VAZIO + `cin>>v[i]` = CRASH (precisa `v(n)`) | 2 | A3,A5 (bug real 2x) |
+| activity selection (ordenar por FIM, guloso clássico) | 2 | G2, H1 |
 
 ⚠️ ATENÇÃO ESPECIAL (pedido do aluno em 2026-06-30): ele quer FIXAR por
 repetição espaçada os "modelos de for" — blocos sem chaves, for-range, e o
