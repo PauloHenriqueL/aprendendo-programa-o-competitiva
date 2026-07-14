@@ -1,7 +1,6 @@
 # Programação Competitiva — Paulo (UFMG)
 
-Este arquivo guia como o Claude deve trabalhar neste diretório. Leia-o no
-início de cada sessão.
+Este arquivo guia como o Claude deve trabalhar neste diretório. Leia-o no início de cada sessão.
 
 ## Quem é o aluno
 
@@ -32,31 +31,98 @@ Implicações práticas para o Claude:
 - Repetir a teoria essencial de forma breve quando um conceito reaparece,
   mesmo já ensinado — a repetição é intencional, não redundância.
 
-## ESTRUTURA DIÁRIA (decidida 2026-07-04 — NÃO fazer estudo raso!)
+## 🎯 O PLANO DE JULHO — É SÓ ISTO (definido pelo aluno, 2026-07-14)
 
-O aluno pediu explicitamente para o estudo deixar de ser raso (antes: poucas
-perguntas + 4 aquecimentos + 1 conceito novo). Todo dia, NO MÍNIMO 10
-exercícios, neste fluxo:
+> *"Se eu sair de julho sabendo bem tudo que vimos até aqui, principalmente
+> **busca binária, guloso e grafos 1**, vou me sentir realizado.
+> São muitos conceitos para ver, por isso restringir a isso."*
 
-1. **DISCUSSÃO INICIAL (recall ativo, estilo prova):** eu faço ~6 perguntas
-   NUMERADAS e ESPECÍFICAS sobre conceitos JÁ VISTOS; ele responde de cabeça
-   (sem código, sem rodar nada), estilo prova oral. Formato que ele APROVOU
-   (2026-07-04) e pediu para eu repetir sempre:
-   - Priorizar os 🔴 do painel de desempenho (o que ele mais erra).
-   - Incluir 1 pergunta que PREPARA o conceito novo do dia (ponte).
-   - Depois das respostas: corrigir UMA A UMA, marcar 🟢 (avança) / 🔴 (trava),
-     apontar erros de vocabulário (ex.: "out of bounds" ≠ "overflow").
-   Diagnostica o que enferrujou e reativa a memória antes dos exercícios.
-2. **AQUECIMENTO — 8 exercícios:**
-   - **4** cobrando conceitos JÁ VISTOS (reforço espaçado — favorecer os 🔴 do
-     painel de desempenho no PLANO_DE_ESTUDO).
-   - **4** variados que relembram o que ele vai precisar para o problema
-     principal do dia (preparam o conceito novo).
-3. **CONCEITO NOVO — 2 exercícios:** arquivo com o conceito em COMENTÁRIO + 2
-   problemas para ele aplicar/implementar.
+**O plano inteiro, em 3 linhas:**
+| Semana | O quê |
+|--------|-------|
+| **14/07–20/07** (atual) | **REVISITAR TUDO** que já vimos. **ZERO conceito novo.** |
+| **21/07–27/07** | **GRAFOS parte 1** (BFS/DFS) — o único conceito novo do mês |
+| **28/07–31/07** | **GRAFOS mais forte** + revisitar tudo de novo. Fecha julho. |
 
-Total mínimo: 10 exercícios/dia. Manter o [[formato-exercicios]] (só enunciado,
-zero código) nos arquivos de exercício.
+⚠️ **NÃO introduzir NADA fora deste roteiro.** O aluno pediu explicitamente para
+restringir — ele se confundiu com conceito empilhado em conceito. A lista
+completa do que "já vimos" (o inventário da revisão) está no PLANO_DE_ESTUDO.
+
+🔥 **Os 3 alvos da meta:** **busca binária · guloso · grafos 1.**
+Priorizar estes em todo recall e todo aquecimento.
+
+## 🗓️ RITMO: o gatilho é o DESEMPENHO, não o calendário (2026-07-14)
+
+⚠️ **PRIMEIRA COISA A FAZER EM TODA SESSÃO:**
+> **Verifique a DATA DE HOJE, abra o PLANO_DE_ESTUDO.md, veja em que SEMANA do
+> calendário estamos, e trabalhe o conceito DAQUELA semana.**
+
+Pedido dele (2026-07-14):
+> *"Vamos introduzir um conteúdo novo depois de termos certeza de que consegui
+> resolver sozinho e de primeira um conceito anterior. Por padrão será 1
+> conceito novo por semana, mas se eu conseguir resolver sozinho DUAS VEZES
+> exercícios diferentes do mesmo conceito, podemos deixar esse conceito EM
+> ESPERA, para ser revisitado daqui a duas semanas com um exercício."*
+
+**A REGRA DE AVANÇO:**
+| Situação | Ação |
+|----------|------|
+| Acertou **2 exercícios DIFERENTES** do conceito, **sozinho e de primeira** | ✅ conceito **EM ESPERA** → pode avançar |
+| Ainda não acertou 2 de primeira | 🔁 **NÃO AVANÇAR.** Reintroduzir em todo aquecimento |
+| Em espera há **2 semanas** | 🔄 revisitar com **1 exercício**. Errou? Volta a ser ativo |
+
+**"De primeira" = ZERO rodadas de correção, ZERO dicas minhas, compilação limpa.**
+AC depois de eu apontar 3 bugs **NÃO CONTA**. Contar RODADAS, não vereditos.
+
+## 📋 ESTRUTURA FIXA DO DIA — **10 / 8 / 2** (padronizada por ele, 2026-07-14)
+
+> *"O que mais está funcionando para mim são as perguntas iniciais e o
+> aquecimento. Vamos deixar padronizado: 10 perguntas iniciais, 8 aquecimentos
+> e 2 questões do novo conceito."*
+
+**TODO DIA, SEM EXCEÇÃO:**
+
+1. **10 PERGUNTAS DE RECALL** (oral, sem código, sem rodar nada — estilo prova):
+   - Priorizar os 🔴 do painel (o que ele mais erra).
+   - Incluir o **pré-flight verbal** dos conceitos em fixação.
+   - ≥1 pergunta que faz a **ponte** para o conceito do dia.
+   - Depois: corrigir **UMA A UMA**, marcar 🟢/🟡/🔴, apontar erro de
+     vocabulário (ex.: "out of bounds" ≠ "overflow").
+2. **8 EXERCÍCIOS DE AQUECIMENTO:**
+   - **4** de revisão espaçada (conceitos antigos — favorecer os 🔴).
+   - **4** que preparam/aplicam o conceito da semana.
+3. **2 EXERCÍCIOS DO CONCEITO NOVO** (arquivo com teoria em COMENTÁRIO).
+
+Total: 10 exercícios + 10 perguntas. **É o formato que funciona — NÃO MUDAR.**
+Manter o [[formato-exercicios]] (só enunciado, zero código) nos arquivos.
+
+## 🔁 "ACERTAR DE PRIMEIRA" É A META (pedido do aluno, 2026-07-14)
+
+O aluno pediu explicitamente: *"não me senti confiante nesses exercícios, vou
+querer REFAZER exercícios como esses algumas vezes... quero fixar os conceitos
+para conseguir acertar eles DE PRIMEIRA."*
+
+**Consequência para o Claude — a régua muda:**
+- **AC depois de 3 rodadas de correção NÃO é "aprendido".** É "resolvido".
+- Um conceito só é 🟢 quando ele acerta **de primeira, sem dica, em 3 sessões
+  seguidas**, com o conceito vestindo roupas diferentes.
+- Enquanto isso não acontecer, **reintroduzir o conceito em TODO aquecimento**.
+- NÃO parabenizar o AC como se fosse domínio. Contar as RODADAS, não o veredito.
+
+**Os 3 conceitos em fixação AGORA** (ver PLANO_DE_ESTUDO para os erros exatos):
+janela deslizante · dois ponteiros nas pontas (contar em bloco) · busca binária
+/ `lower_bound`.
+
+**Pré-flight verbal** (30s antes de ele codar, enquanto estes 3 não firmarem):
+"quando encolho a janela?" (*quando ESTOUROU*) · "quantos ponteiros movo por
+iteração?" (*UM*) · "qual o passo da busca binária?" (*meio ± 1, nunca ++/--*)
+· "intervalo fechado → o while é?" (*`<=`*) · "meu sentinela pode colidir com
+resposta válida?" (*`0` é índice válido — use `-1`*).
+
+⚠️ **PROVA VIVA de que acertar 1x não fixa:** em 2026-07-14 (C3), os 4 bugs da
+busca binária foram os MESMOS que ele resolveu em 2026-07-13 (B1/B3) — e que ele
+EXPLICOU CORRETAMENTE no recall verbal do próprio dia 14. Um dia depois, sem
+revisar, voltaram todos. Nunca tratar um conceito como concluído.
 
 ## CONTROLE DE DESEMPENHO (avançar/travar por acerto/erro)
 
@@ -133,7 +199,7 @@ Desafios de estrutura nova:
 - `votacao.cpp` — ✅ AC (map: contar strings, achar vencedor)
 - `busca.cpp` — ✅ AC (BUSCA BINÁRIA; passou N=Q=100k em ~117ms)
 
-Recursão (`aquecimentos/aquecimento_recursao.cpp`) — CONCLUÍDO ✅ (5/5):
+Recursão (`revisoes/2026-07-03_recursao_R1-R5.cpp`) — CONCLUÍDO ✅ (5/5):
 | Problema | Conceito | Status |
 |----------|----------|--------|
 | R1 soma 1..N | recursão numérica, caso base | ✅ AC |
@@ -142,7 +208,7 @@ Recursão (`aquecimentos/aquecimento_recursao.cpp`) — CONCLUÍDO ✅ (5/5):
 | R4 contarParaBaixo | ordem impressão; caso base `void` só para (bug `= vs ==`) | ✅ AC |
 | R5 fibonacci | dois casos base, dois ramos; exponencial→DP | ✅ AC (de primeira) |
 
-Backtracking / árvore incluir-não-incluir (`04-recursao/`):
+Backtracking / árvore incluir-não-incluir (`05-recursao-backtracking/`):
 - `subconjuntos.cpp` — subset-sum SIM/NÃO (referência; esqueleto veio cheio
   demais, encerrado como material de leitura).
 - `contar_subconjuntos.cpp` — ✅ AC. CONTAR subconjuntos que somam o alvo.
@@ -151,8 +217,8 @@ Backtracking / árvore incluir-não-incluir (`04-recursao/`):
   O aluno reaproveitou o padrão `if(...) return 1` (decidir) num problema de
   contar — precisou de 3 tentativas até trocar por `semEle + comEle`.
 
-Memória & Arquivos (`05-memoria-arquivos/`; aquecimento em `aquecimentos/aquecimento_memoria.cpp`) — CONCLUÍDO ✅ (5/5):
-Teoria em `05-memoria-arquivos/teoria_memoria_arquivos.cpp` (malloc/new/vector; FILE*/fstream).
+Memória & Arquivos (`06-memoria-arquivos/`; aquecimento em `revisoes/2026-07-04_memoria_arquivos_M1-M5.cpp`) — CONCLUÍDO ✅ (5/5):
+Teoria em `06-memoria-arquivos/teoria_memoria_e_arquivos.cpp` (malloc/new/vector; FILE*/fstream).
 | Problema | Conceito | Status |
 |----------|----------|--------|
 | M1 vetor dinâmico | `vector<int> v(n)`; soma `long long`; max começa em v[0]/INT_MIN (bug: usava v[1], crash N=1) | ✅ AC |
@@ -184,22 +250,181 @@ Codeforces (`codeforces/`) — problemas REAIS avulsos (ver [[fonte-problemas]])
 - `watermellon.cpp` (CF 4A) — ✅ AC. Pegadinha `w>2` (2 não divide em 2 pares positivos).
 - `toolong.cpp` (CF 71A) — abreviar palavra longa (>10). (verificar status.)
 
-DIA GULOSO (2026-07-05, método novo 10 exercícios) — `06-guloso/` + aquecimentos:
-- `aquecimentos/aquecimento_guloso.cpp` — 8 aquecimentos, TODOS AC. Bugs fixados:
+DIA GULOSO (2026-07-05, método novo 10 exercícios) — `07-guloso/` + aquecimentos:
+- `revisoes/2026-07-05_guloso_A1-A8.cpp` — 8 aquecimentos, TODOS AC. Bugs fixados:
   `vector<int> v;` VAZIO + `cin>>v[i]` = crash (pegou 2x! A3,A5); índice fixo
   em loop (A6); ler enunciado (A7 contagem×soma); `<`×`<=` (A7); sincronizar
   posição com v[0] (A3 posi=1).
-- `06-guloso/conceito_guloso.cpp` — teoria (guloso NEM SEMPRE ótimo: {1,3,4}) + G1
+- `07-guloso/teoria_guloso.cpp` — teoria (guloso NEM SEMPRE ótimo: {1,3,4}) + G1
   (menor tempo espera, AC: soma corrente com 2 acumuladores; overflow de novo) +
   G2 (activity selection — referência; bug: map errado, vetores separados).
-- `06-guloso/pratica_pair_guloso.cpp` — teoria detalhada de pair/vector<pair>/map/
+- `07-guloso/teoria_pair_e_activity_selection.cpp` — teoria detalhada de pair/vector<pair>/map/
   LLONG_MIN + H1 (activity selection). ✅ AC IMPLEMENTADO SOZINHO após estudar a
   teoria. Marco: paradigma guloso + pair DOMINADOS. Ver [[nivel-e-motivacao]].
 
-⚠️ PEDIDO DO ALUNO (2026-07-04): adicionar ao plano "entender BITS/binário" e
-"algoritmo GULOSO" — ele reconhece que não domina bits (problema pessoal, ensinar
-do ZERO devagar). Ver Módulos 5.5 e 5.6 no PLANO_DE_ESTUDO. PRIORIZAR isso antes
-de problemas que dependam de bits/greedy.
+DIA BITS (2026-07-06, método 10 exercícios) — `revisoes/2026-07-06_bits_A1-A8_PAUSADO.cpp`:
+- 8 aquecimentos: A1-A7 AC. A1 ensinou NOVA cara do overflow: `(long long)a*b`
+  (a MULTIPLICAÇÃO estoura em int ANTES de virar long long; não basta o
+  resultado ser long long!). A8 (converter p/ binário na mão) = referência
+  (bit novo NA FRENTE resolve a ordem; loop `while(x>0)` generaliza vs if fixo).
+- `09-bits-PAUSADO/teoria_bits.cpp` — teoria dos operadores + B1/B2.
+
+⏸️ BITS PAUSADO (2026-07-06): ao chegar nos OPERADORES bit a bit (`&`,`|`,`^`,
+`<<`,`>>`, `x&1`, `x>>1`), o aluno disse que "está grego" — falta BASE
+fundamental de binário. Decidiu ESTUDAR POR FORA com um LIVRO, no ritmo dele, e
+PULAR bits no cronograma por ora. Decisão madura — RESPEITAR. NÃO retomar bits
+por iniciativa própria; esperar ele sinalizar. Seguir para o PRÓXIMO conteúdo
+(sugestão: grafos/BFS-DFS, ou mais guloso, ou dois ponteiros). Ele JÁ domina a
+base intuitiva de binário (%2, /2, potência de 2, converter na mão — tudo AC);
+travou nos operadores. `codeforces/CF_popcount_PENDENTE_precisa_bits.cpp` segue pendente (depende de bits).
+NUNCA tratar isso como fraqueza — é lacuna de base, e ele está agindo certo.
+
+⚠️ PEDIDO ORIGINAL (2026-07-04): "entender BITS/binário" + "algoritmo GULOSO".
+GULOSO já foi feito (módulo 5.6, 🟢). BITS pausado (acima).
+
+DIA DOIS PONTEIROS — PARTE 2 (2026-07-13) — **10/10 AC** 🏆
+`revisoes/2026-07-13_dois_ponteiros_B1-B8.cpp` (B1-B8) + `08-dois-ponteiros/teoria_dois_ponteiros_e_janela.cpp` (D1-D2).
+Recall (6 perguntas): 3🟢 (índice×valor, busca binária, **prefix sum — melhor
+resposta do dia**), 2🟡, 1⚪ (dois ponteiros = o conceito novo).
+
+| # | Veredito | Rodadas | O que travou |
+|---|----------|---------|--------------|
+| B1 busca binária (REFAZER do A7) | ✅ AC | **1** | — de primeira, zero warnings |
+| B2 prefix sum (REFAZER do A8) | ✅ AC | 4 | overflow no ACUMULADOR |
+| B3 índice × valor | ✅ AC | 2 | sentinela `-1`; `break` na 1ª ocorrência |
+| B4 borda inclusiva (fórmula O(1)) | ✅ AC | 3 | cast DEPOIS da conta |
+| B5 swap menor↔maior | ✅ AC | 3 | ignorou warning 2x |
+| B6 overflow (2 naturezas) | ✅ AC | **1** | — resolveu na ORIGEM |
+| B7 guloso + sort | ✅ AC | 2 | `<` vs `<=`; esqueceu `cout` |
+| B8 par que soma X (2 ponteiros) | ✅ AC | 2 | overflow na soma |
+| **D1 CF 279B "Books" (rating 900!)** | ✅ AC | 2 | usou `sort` (proibido!) |
+| **D2 Botes (guloso + 2 ponteiros)** | ✅ AC | 2 | `for` externo em volta dos ponteiros |
+
+🏆 **MARCO: resolveu um CODEFORCES 900 (D1).** Em 2026-07-04 ele se assustou
+achando que não resolveria um 800. Validado com stress test: 500 casos vs força
+bruta, 0 falhas; 25ms com N=1e5. D2 validado vs força bruta ÓTIMA (400 casos, 0
+falhas) — o guloso dele É ótimo, não só "bate nos exemplos".
+
+🔥 **LIÇÃO CENTRAL — o overflow tem UMA raiz só (pegou 3x: B2, B4, B8):**
+ele põe `long long` no **DESTINO** e deixa `int` **onde a CONTA acontece**.
+- B2: `long long soma = pre[...]` mas `pre` era `vector<int>` → estourou ao ENCHER.
+- B4: `(long long)((a+b)*(b-a+1))` → o cast engloba o RESULTADO; a conta já estourou.
+- B8: `int soma = vetor[esq]+vetor[dir]` com `vector<int>`.
+→ **A pergunta certa NÃO é "onde eu guardo?", é "ONDE A CONTA EXPLODE?"**
+→ Em B6 e na correção do B8 ele chegou sozinho na solução certa: declarar o
+  **contêiner** como `vector<long long>` = resolve na ORIGEM, sem cast nenhum.
+→ **PEDIDO DELE (2026-07-13): "tenho o hábito de usar int, me cobre disso."**
+  Regra a martelar: **limites perto de 1e9 → `long long` já no `cin`/`vector`.**
+  Não analisar caso a caso se sobrevive.
+
+🚨 **WARNINGS: ele PEDIU para eu criticá-lo (2026-07-13)** — "tenho o mau hábito
+de pedir verificação sem rodar o `-Wall`; se pegar, me avise e me critique".
+CUMPRIR ISSO: se pedir "verifique" e o `-Wall` acusar → **NÃO julgar**, cobrar.
+Aconteceu 2x no B5 (5ª e 6ª vez no total). Depois disso, ele passou a compilar
+antes — B6/B7/B8/D1/D2 vieram todos limpos. Está morrendo.
+⚠️ MAS ensinar também: **compilação limpa é o PISO, não a garantia.** B7 e D1
+compilaram limpos e não tinham `cout` (o `-Wall` não pega, pois a var é usada
+no `++`). Sempre rodar os exemplos do enunciado.
+
+🎓 **O FIO CONDUTOR FECHOU** (era o objetivo pedagógico do dia). As 3 variantes:
+| Técnica | Ponteiros | O que a ESTRUTURA deixa descartar |
+|---------|-----------|-----------------------------------|
+| B8 par que soma X | nas PONTAS, vindo ao encontro | ordenação → 1 elemento + TODOS os pares dele |
+| D1 janela deslizante | JUNTOS, mesma direção | valores POSITIVOS → 1 partida + todos os trechos dela |
+| D2 botes | PONTAS + guloso | ordenação → a escolha do par é FORÇADA |
++ busca binária (metade) + prefix sum (pré-calcular) + guloso (não voltar atrás).
+**Guloso e dois ponteiros são A MESMA COISA**: o guloso DECIDE ("o par da mais
+pesada só pode ser a mais leve"), os dois ponteiros EXECUTAM em O(N).
+⚠️ D1 é O(N) mesmo com 2 laços aninhados: `esq` NUNCA retrocede → o `while`
+interno roda ≤ N vezes SOMADAS em toda a execução. Mesma contabilidade do B8.
+
+🔴 **ERRO NOVO E VALIOSO — "a ferramenta veio antes da leitura":**
+- D1 (1ª tentativa): aplicou `sort` + guloso (o molde do B7 que acabara de fazer)
+  e ATROPELOU a restrição "lê em SEQUÊNCIA, sem pular". `sort` embaralha a pilha
+  → resolve outro problema. Ele RECONHECEU o padrão ("maximizar qtd com
+  orçamento") rápido DEMAIS.
+- D2 (1ª tentativa): pôs um `for(i)` externo EM VOLTA dos dois ponteiros → contou
+  os botes N vezes. Mesmo 🔴 do A4: **"a técnica JÁ é o laço, não aninhe"**.
+→ **A PERGUNTA QUE SALVA: "o que este problema me PROÍBE de fazer?"**
+→ Ter repertório é bom E perigoso: o padrão dispara antes da leitura terminar.
+
+✅ **CAÇOU 2 ERROS MEUS nos enunciados** (B4: contagem de pares; D2 exemplo 3:
+eram 5 botes, não 4). Confere o enunciado À MÃO em vez de confiar. Quando lê
+para CONFERIR, acerta; quando lê para RECONHECER UM PADRÃO, atropela.
+
+🟢 SUBIRAM: índice×valor (B1,B3,B5 — o 🔴 nº1 do painel, MORTO); passo da busca
+binária (`meio±1`); `break` ao achar; borda inclusiva (`<=`) — acertou de
+primeira em D1 (`soma > t`, não `>=`) e em B7.
+
+DIA DOIS PONTEIROS (2026-07-08, método 10 exercícios) — `revisoes/2026-07-08_dois_ponteiros_A1-A8.cpp`:
+Recall inicial (6 perguntas): 2🟢 / 3🟡 / 1🔴. O 🔴 foi justamente a ponte
+(pergunta 6): "vetor ORDENADO, existem dois que somam X?" → ele descreveu
+FORÇA BRUTA O(N²), jogou fora a ordenação. Conceito novo confirmado.
+Aquecimento: **6 AC / 2 erros** (A7 busca binária, A8 prefix sum).
+| # | Veredito | O que pegou |
+|---|----------|-------------|
+| A1 soma com long long | ✅ AC | processou EM FLUXO (O(1) mem), sem vector |
+| A2 vizinhos iguais | ✅ AC | pôs o `n-1` no laço CERTO; borda N=1 ok |
+| A3 produto (long long)a*b | ✅ AC | cast ANTES da conta |
+| A4 map + vector<pair> | ✅ (mostrei) | arquitetura CERTA, mecânica errada |
+| A5 palíndromo 2 ponteiros | ✅ AC | esq/dir, zero warnings, bordas ok |
+| A6 inverter no lugar | ✅ AC | swap com temp, `i<f`, ambos andam |
+| A7 busca binária | ❌ WA | comparou `meio` (ÍNDICE) com alvo (VALOR) |
+| A8 prefix sum | ❌ WA+TLE | não fez prefix sum; `<` vs `<=`; `pares(n)` |
+
+🔥 **DESCOBERTA CENTRAL DO DIA:** o aluno **acerta a MODELAGEM e erra a MECÂNICA
+DO LAÇO**. Dos 5 erros, **4 foram "o laço"**; nenhum foi "não sei o que fazer".
+Mecânica se conserta com repetição; modelagem é o difícil e ele TEM. NUNCA
+deixar ele achar que "não sabe pensar" — dizer isso explicitamente.
+
+🚨 **IGNOROU O WARNING DO COMPILADOR 3x NO MESMO DIA**, e nos 3 o `-Wall`
+apontava o bug EXATO:
+- A5: `warning: 'palindrome' set but not used` → esqueceu o `cout`.
+- A6: `warning: unused variable 'temp'` → swap quebrado (`v[f]=v[i]` em vez de `=temp`).
+- A8: `warning: statement has no effect` em `for(l; l<r; l++)`.
+→ REGRA A MARTELAR: **"warning é teste falhando"**. Exigir compilação LIMPA
+  como pré-requisito antes de julgar. É o 🔴 mais barato de matar.
+
+Bugs conceituais novos (todos 🔴, reintroduzir):
+- **ÍNDICE × VALOR**: `if(meio < alvo)` em vez de `if(vetor[meio] < alvo)` (A7).
+  Parente do "for-range dá VALOR, não índice". Prescrição: antes de escrever
+  uma comparação, dizer em voz alta "isto é POSIÇÃO ou VALOR?".
+- **Busca binária: passo é `lo=meio+1`/`hi=meio-1`, NÃO `lo++`/`hi--`** —
+  ele fez `hi--` → descarta 1 elemento, vira busca linear O(N) disfarçada.
+  Também esqueceu o `break` ao achar (tem o reflexo em varredura, perde na
+  busca binária porque a estrutura muda).
+- **`push_back` × `v(n)` são exclusivos** (A4: `lista(size())` + `push_back`).
+- **`for-range` JÁ é o laço; não aninhar com índice** (A4: `for(i){for(auto&p:m)}`).
+- **Não modificar a variável do for-range por referência** (`for(auto&[l,r]` + `l++`).
+- **`<` vs `<=` inclusivo** — 3ª vez (B Braquiossauro, A7 guloso, A8 hoje).
+- **`pares(n)` quando eram `q` consultas** — n=tamanho, q=nº de consultas.
+
+Subiu para 🟢: **OVERFLOW** (7ª rep; acertou as DUAS naturezas sem aviso: soma
+acumulada E `(long long)a*b`). Vocabulário a polir: overflow **SILENCIOSO**
+(compila, roda, número errado), não "dá erro". Também 🟢: limite de laço com
+vizinhos; **mecânica de dois ponteiros** (A5, A6 AC de primeira, zero warnings).
+
+⚠️ Armadilha de `string`: `s[s.size()]` devolve `'\0'` e NÃO crasha — nem o
+sanitizer acusa (o padrão permite). Em `vector` crasharia. Erro SILENCIOSO.
+
+Conceitos INTRODUZIDOS (1ª vez, precisam de ~9 reps ainda):
+- **`sort` decrescente**: `sort` só sobe. Descer = truque do SINAL (`-qtd`, só
+  para NÚMEROS) ou COMPARADOR lambda (geral, funciona com string).
+- **Lambda como comparador** (preenche item do Módulo 3).
+- **PREFIX SUM**: `pre[i]` = soma dos `i` primeiros = `v[0..i-1]` ("tudo ANTES
+  da posição i"). `pre` tem **n+1** posições, `pre[0]=0`. Consulta:
+  **`soma(L..R) = pre[R+1] - pre[L]`** em O(1). O `R+1` resolve o intervalo
+  inclusivo de graça. `vector<long long>`! O(N+Q) em vez de O(N·Q).
+  Aluno NÃO entendeu sozinho e PEDIU o ótimo → `A8_otima` no arquivo
+  (validado: 0,17s vs 1,40s da ingênua com N=Q=1e5, respostas idênticas).
+
+⏭️ **PRÓXIMA SESSÃO (2026-07-09)** — pedido explícito do aluno: "reforço maior
++ apresentar o conceito novo". Ver o plano detalhado no PLANO_DE_ESTUDO.md.
+Ponto pedagógico central: o aluno tem a MECÂNICA de dois ponteiros mas não vê
+o **FIO CONDUTOR** — A6 (ponteiros nas pontas), A7 (busca binária = descartar
+metade), A8 (prefix sum = pré-calcular) e o GULOSO são **A MESMA IDEIA**: usar
+a ESTRUTURA do problema (ordenação/monotonicidade) para **descartar em BLOCO**
+em vez de testar tudo. Amarrar isso explicitamente. Refazer A7 e A8 antes.
 
 Aquecimento 2 (`aquecimento2.cpp`) — CONCLUÍDO ✅ (5/5):
 | Problema | Conceito | Status |
@@ -298,6 +523,43 @@ Atualizar o contador a cada vez que o aluno usa o conceito num problema.
 | **Overflow → `long long`** (soma acumulada) | 5 | M1,M3,M4,A1,G1 (5x!) |
 | `vector<int> v;` VAZIO + `cin>>v[i]` = CRASH (precisa `v(n)`) | 2 | A3,A5 (bug real 2x) |
 | activity selection (ordenar por FIM, guloso clássico) | 2 | G2, H1 |
+| **Overflow → `long long`** (soma acumulada E multiplicação) 🟢 | 7 | M1,M3,M4,A1,G1,+A1/A3(07-08) |
+| **Dois ponteiros** (esq=0, dir=size()-1, `while(esq<dir)`, ambos andam) 🟢 | 4 | aquec-F, aquec2-I, A5, A6 |
+| **swap de 3 linhas** (`t=a; a=b; b=t;` — `t` PRECISA aparecer à direita) | 1 | A6 (bug real: `v[f]=v[i]`) |
+| limite de laço com vizinhos (`i<n-1`; melhor `i+1<n` se `size_t`) 🟢 | 2 | A2, N-ceratops |
+| **ÍNDICE × VALOR** (`meio` é posição! usar `vetor[meio]`) 🔴 | 1 | A7 (bug real) |
+| **busca binária: `lo=meio+1`/`hi=meio-1`** (metade, não `++`/`--`) 🔴 | 2 | busca.cpp, A7(bug) |
+| **PREFIX SUM** `pre[R+1]-pre[L]`; `pre` tem n+1; `pre[0]=0`; long long | 1 | A8_otima (mostrado) |
+| **`sort` decrescente**: truque do sinal (`-x`) ou comparador | 1 | A4 (mostrado) |
+| **lambda como comparador** `sort(b,e,[](a,b){...})` | 1 | A4 (mostrado) |
+| **`push_back` × `v(n)`: exclusivos, não misturar** 🔴 | 1 | A4 (bug real) |
+| **`for-range` JÁ é o laço** (não aninhar com índice) 🔴 | 1 | A4 (bug real) |
+| não modificar variável do for-range por referência (`auto&` + `l++`) 🔴 | 1 | A8 (bug real) |
+| **LER OS WARNINGS** (`-Wall` aponta o bug exato) 🔴🔴 | 3 | A5,A6,A8 (ignorou 3x!) |
+| `<` vs `<=` (intervalo INCLUSIVO) 🔴 | 3 | B Braquiossauro, A7 guloso, A8 |
+| `while(q--)` ("repita q vezes") | 1 | A8_otima |
+| processar em fluxo (não guardar consultas) | 2 | M2_otima, A8_otima |
+| **Overflow → `long long`** (07-13: B2,B4,B8 erro; B6,D1,D2 AC) 🟡 | 13 | +B2,B4,B6,B7,B8,D1 |
+| ↳ **cast num OPERANDO, não no resultado** `(long long)(a+b) * c` 🔴 | 2 | B4 (bug real 2x) |
+| ↳ **acumulador/contêiner `vector<long long>`** = resolve na ORIGEM 🟢 | 3 | B2, B6, B8 |
+| **ÍNDICE × VALOR** (`v[meio]`, não `meio`) 🟢 SUBIU! | 4 | A7, B1, B3, B5 |
+| **busca binária** `lo=meio+1`/`hi=meio-1`; `lo+(hi-lo)/2`; `<=` no while 🟢 | 3 | busca.cpp, A7, B1 |
+| ↳ por que `lo <= hi` e não `<`: faixa FECHADA; 1 elemento (`lo==hi`) é válido | 1 | B1 |
+| **PREFIX SUM** `pre[R+1]-pre[L]`; n+1 posições; `vector<long long>` | 2 | A8_otima, B2 |
+| **DOIS PONTEIROS (pontas)** `esq=0,dir=n-1`, `while(esq<dir)` 🟢 | 6 | aquec-F, aquec2-I, A5, A6, B8, D2 |
+| **JANELA DESLIZANTE** (ponteiros MESMA direção; cresce dir, encolhe esq) | 1 | D1 (CF 279B) |
+| ↳ é O(N) apesar de 2 laços: `esq` nunca retrocede (≤N passos TOTAIS) | 1 | D1 |
+| ↳ funciona porque valores são POSITIVOS (soma monotônica), não por sort! | 1 | D1 |
+| **a TÉCNICA já é o laço — não aninhar num `for`** 🔴 | 2 | A4, D2 (bug real 2x) |
+| **"o que o problema me PROÍBE de fazer?"** (D1: proíbe reordenar → sem `sort`) 🔴 | 1 | D1 (bug real) |
+| `<` vs `<=` (borda INCLUSIVA) 🟡 (07-13: errou B7, acertou B4/D1) | 5 | B Braq., A7, A8, B7, D1 |
+| sentinela impossível (`-1`, `INT_MIN`) p/ "não achei" | 3 | M1, H1, B3 |
+| `break` ao achar (gatilho = palavra "PRIMEIRA"/"existe" no enunciado) | 4 | aquec2-I, busca, B1, B3 |
+| **LER OS WARNINGS** 🔴 (07-13: 2x no B5; depois 5 seguidos limpos) | 5 | A5,A6,A8,B5×2 |
+| ⚠️ compilação limpa é o PISO: `-Wall` NÃO pega `cout` faltando | 2 | B7, D1 (bug real) |
+| fórmula fechada O(1) em vez de laço (Gauss; limites 2e9 → laço = TLE) | 1 | B4 |
+| swap 3 linhas (`temp` PRECISA aparecer à direita) 🟢 | 2 | A6, B5 |
+| guloso: parar cedo (`else break`) quando ordenado e não cabe mais 🟢 | 1 | B7 |
 
 ⚠️ ATENÇÃO ESPECIAL (pedido do aluno em 2026-06-30): ele quer FIXAR por
 repetição espaçada os "modelos de for" — blocos sem chaves, for-range, e o

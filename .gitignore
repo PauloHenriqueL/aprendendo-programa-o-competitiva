@@ -1,17 +1,26 @@
-# Executaveis compilados (nao versionar)
+# ============================================================
+# Ignora TUDO que nao for fonte/documentacao.
+# Assim os binarios do g++ (que nao tem extensao) nunca vazam,
+# sem precisar listar cada nome na mao.
+# ATENCAO: nao por comentario na MESMA linha de um padrao --
+# o git trata o "#" como parte do padrao.
+# ============================================================
+*
+
+# ...exceto os diretorios (para o git descer neles):
+!*/
+
+# ...e os arquivos que importam:
+!*.cpp
+!*.h
+!*.hpp
+!*.md
+!.gitignore
+
+# Nunca versionar, mesmo tendo extensao:
 *.out
-a.out
-# binarios sem extensao gerados pelo g++ (mesmo nome do .cpp), em qualquer pasta
-zero
-torneio
-baralho
-tempo
-visto
-votacao
-busca
-sol
-main
-solucao
+*.exe
+*.o
 
 # Arquivos de teste locais
 *.txt

@@ -44,6 +44,8 @@ using namespace std;
       lua 2
       sol 3
     (mar aparece 1 vez -> nao entra)
+
+
 -----------------------------------------------------------------------------
 */
 void H(){
