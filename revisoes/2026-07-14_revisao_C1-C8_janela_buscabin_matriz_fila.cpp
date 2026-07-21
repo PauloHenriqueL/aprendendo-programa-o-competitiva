@@ -215,10 +215,26 @@ void C4(){
 // ------------------------------------------------------------
 void C5(){
     int l, c; cin >> l >> c;
-    vector<long long, vector<long long>> matriz(l, c) = {0};
-    vector<vector<long>> matriz(l, vector<long long>(c,0));
-
-
+    long long soma = 0;
+    vector<vector<long long>> matriz(l, vector<long long>(c, 0));
+    for(int i = 0; i < l; i++){
+        for(int j = 0; j < c; j++){
+            cin >> matriz[i][j];
+            soma += matriz[i][j];
+        }
+    }
+    long long maior = matriz[0][0];
+    int linha = 0, coluna = 0;
+    for(int i =0; i < l; i++){
+        for(int j = 0; j < c; j++){
+            if(maior<matriz[i][j]){
+                maior = matriz[i][j];
+                linha = i;
+                coluna = j;
+            }
+        }
+    }
+    cout << soma << "\n" << maior << " " << linha << " " << coluna << endl;
 }
 // ------------------------------------------------------------
 // C6 — OS 4 VIZINHOS + limites da grade   [PREPARA GRAFOS]
@@ -254,10 +270,34 @@ void C5(){
 // e um for de 0 a 3. Pense no porquê isso funciona.
 // ------------------------------------------------------------
 void C6(){
-
-
-
+    int l, c; cin >> l >> c;
+    vector<vector<long long>> matriz(l, vector<long long>(c, 0));
+    for(int i = 0; i < l; i++){
+        for(int j = 0; j < c; j++){
+            cin >> matriz[i][j];
+        }
+    }
+    int linha, coluna; cin >> linha >> coluna;
+    long long soma = 0, cont = 0;
+    if(linha - 1 >= 0){
+        soma += matriz[linha - 1][coluna];
+        cont++;
+    }
+    if(coluna -1 >= 0){
+        soma += matriz[linha][coluna-1];
+        cont++;
+    }
+    if(coluna + 1 <= c-1){
+        soma += matriz[linha][coluna+1];
+        cont++;
+    }
+    if(linha + 1 <= l-1){
+        soma +=matriz[linha+1][coluna];
+        cont++;
+    }
+    cout << soma << "\n" << cont << endl;
 }
+
 // ------------------------------------------------------------
 // C7 — FILA (queue): processar em ordem de chegada  [PREPARA BFS]
 //
@@ -291,9 +331,26 @@ void C6(){
 // >>> BFS É EXATAMENTE ISSO: uma fila de células a visitar. <<<
 // ------------------------------------------------------------
 void C7(){
-
-
-
+    int n; cin >> n;
+    std::queue<int> fila;
+    for(int i = 0; i<n; i++){
+        string comando;
+        cin >> comando;
+        if(comando == "CHEGA"){
+            int x; cin >> x;
+            fila.push(x);
+        } else if(comando == "ATENDE"){
+            if(!fila.empty()){
+                long long x = fila.front();
+                cout << x << endl;
+                fila.pop();
+            } else {
+                cout << "VAZIA" << endl;
+            }
+        } else if(comando == "QUANTOS"){
+            cout << fila.size() << "\n"; 
+        }
+    }
 }
 // ------------------------------------------------------------
 // C8 — MARCAR VISITADOS: não repetir trabalho   [PREPARA BFS/DFS]
@@ -325,7 +382,19 @@ void C7(){
 //  é O(1) por consulta e é o que se usa em grafos.)
 // ------------------------------------------------------------
 void C8(){
-
+    int n, distintos = 0; cin >> n;
+    vector<bool> vetor(1000001, false);
+    for(int i =0; i < n; i++){
+        int x; cin >> x;
+        if(!vetor[x]){
+            cout << x << " ";
+            vetor[x] = true;
+            distintos++;
+        }
+    }
+    
+    cout << "\n" << distintos << "\n";
+    
 
 
 }
@@ -340,7 +409,7 @@ int main(){
 //    C5();
 //    C6();
 //    C7();
-//    C8();
+    C8();
 
 
     return 1;

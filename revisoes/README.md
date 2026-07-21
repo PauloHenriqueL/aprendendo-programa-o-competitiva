@@ -15,7 +15,7 @@ Formato do nome: `AAAA-MM-DD_conceito_FAIXA.cpp`
 | `2026-07-06_bits_A1-A8_PAUSADO.cpp` | A1–A8 | binário na mão, `%2`, `/2` | 7/8 ⏸️ pausado |
 | `2026-07-08_dois_ponteiros_A1-A8.cpp` | A1–A8 | dois ponteiros, busca binária, prefix sum | 6/8 |
 | `2026-07-13_dois_ponteiros_B1-B8.cpp` | B1–B8 | idem + overflow, warnings, borda inclusiva | 8/8 ✅ |
-| `2026-07-14_revisao_C1-C8_janela_buscabin_matriz_fila.cpp` | C1–C8 | janela deslizante, `lower_bound`, guloso, matriz, fila | C1–C4 ✅ |
+| `2026-07-14_revisao_C1-C8_janela_buscabin_matriz_fila.cpp` | C1–C8 | janela, `lower_bound`, guloso, **matriz, 4 vizinhos, fila, visitados** (as 4 peças do BFS) | **8/8 ✅** |
 
 ## Regra da casa
 

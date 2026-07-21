@@ -282,6 +282,90 @@ NUNCA tratar isso como fraqueza — é lacuna de base, e ele está agindo certo.
 ⚠️ PEDIDO ORIGINAL (2026-07-04): "entender BITS/binário" + "algoritmo GULOSO".
 GULOSO já foi feito (módulo 5.6, 🟢). BITS pausado (acima).
 
+DIA BUSCA BINÁRIA D1-D8 (2026-07-15/16) — **SÓ O D8 FOI JULGADO**
+`revisoes/2026-07-15_buscabinaria_D1-D8.cpp`
+⚠️ **D1–D7 estão escritos no arquivo mas NÃO julgados — julgar na próxima sessão.**
+
+| # | Veredito | Rodadas | O que travou |
+|---|----------|---------|--------------|
+| D8 pico local (matriz + 4 vizinhos, padrão dl/dc) | ✅ AC | **4** | ver abaixo |
+
+As 4 rodadas do D8: (1) 4 acessos sem teste de existência + `linha`/`coluna`
+não inicializadas → CRASH; (2) `matriz[dl[k]][dc[k]]` — **DESLOCAMENTO usado
+como POSIÇÃO** (ÍNDICE×VALOR versão matriz) + contava por vizinho vencido;
+(3) `if(ehpico) pico++` DENTRO do laço k → 1x1 deu **4** e entregou o bug
+(mesmo padrão do C2/D2: linha certa no lugar errado); (4) ✅ AC, validado com
+5 bordas + 1000×1000 em 0,32s.
+
+🎓 **Padrão dl/dc ensinado do zero** (ele perguntou "são dois vetores?"):
+`dl[k]`/`dc[k]` casados pelo índice k formam UM vizinho; `ni=i+dl[k]`,
+`nj=j+dc[k]`; teste de existência abraça o acesso. Ele ABSORVEU em 2 rodadas
+e PEDIU o padrão em vez de copiar 4 ifs — instinto certo. **Última peça do
+BFS: agora todas (matriz, vizinhos, queue, visitados, dl/dc) já passaram pela
+mão dele.** Exemplo mínimo meu (somar vizinhos) ficou no scratchpad, não no repo.
+
+✅ Acertou de primeira SEM aviso: o `<=` para derrubar a flag no empate
+("estritamente maior" falha no igual) — era 🔴 antigo.
+⚠️ Deslize: chamou o juiz 1x com código inacabado (não compilava).
+
+DIA REVISÃO + PONTE PARA GRAFOS (2026-07-14) — **8/8 AC**
+`revisoes/2026-07-14_revisao_C1-C8_janela_buscabin_matriz_fila.cpp`
+Recall (6 perguntas): 4🟢 · 1🟡 (janela O(N): intuição sim, argumento não) ·
+1🟡 (caminho em grade → era a ponte; ele propôs GULOSO, que **quebra**).
+
+| # | Veredito | Rodadas | O que travou |
+|---|----------|---------|--------------|
+| C1 janela deslizante | ✅ AC | 2 | **sinal INVERTIDO** (`while(soma<t)`) → `esq` estourou o vetor e CRASHOU |
+| C2 dois ponteiros (CONTAR em bloco) | ✅ AC | 3 | `dir--` fora do `else` (moveu os 2 ponteiros); **me chamou sem compilar (erro fatal!)** |
+| C3 busca binária / `lower_bound` | ✅ AC | 2 | **os 4 bugs que ele resolveu em 13/07 VOLTARAM** (ver abaixo) |
+| C4 guloso + soma corrente | ✅ AC | 2 | `soma = pre[i]` em vez de `+=` (atribuir × acumular) |
+| C5 matriz 2D | ✅ AC | 3 | valor e posição se DESCOLARAM (`if` aninhado); `INT_MAX` vazou |
+| **C6 os 4 vizinhos** | ✅ AC | **1** | — de primeira, todos os cantos/bordas |
+| C7 fila (`queue`) | ✅ AC | 2 | faltou `"\n"` no `QUANTOS` (saída grudou) |
+| **C8 vetor de visitados** | ✅ AC | **1** | — de primeira |
+
+🚨 **O ALERTA MAIS IMPORTANTE DO DIA — C3:** os 4 bugs da busca binária foram
+**os MESMOS** que ele resolveu em 13/07 (B1/B3) — e que ele **EXPLICOU
+CORRETAMENTE no recall verbal do próprio dia 14**, horas antes:
+`hi--` em vez de `hi=meio-1` (**vira O(N)! 7,2s → TLE**) · `while(esq<dir)` em
+vez de `<=` · sentinela `0` em vez de `-1` · `break` ao achar (perde a PRIMEIRA
+ocorrência com repetidos). **Um dia depois, sem revisar, voltaram TODOS.**
+→ Ele PEDIU para refazer até acertar de primeira. Ver "ACERTAR DE PRIMEIRA".
+
+🎓 **O DIA MONTOU O BFS SEM ELE PERCEBER** (era o objetivo). C5 (matriz = o
+labirinto) · C6 (os 4 vizinhos + limites = para onde posso andar) · C7 (`queue`
+= a lista de células a visitar) · C8 (visitados O(1) = **o que impede o loop
+infinito**). Semana 4 é só ENCAIXAR as 4 peças.
+
+🔴 **ERRO CONCEITUAL VALIOSO (recall, pergunta 6):** perguntado como achar
+caminho num labirinto, ele descreveu **busca gulosa** ("olho ao redor e escolho
+o caminho que leva ao alvo; se tem parede, vou pro outro lado"). **Guloso
+QUEBRA em labirinto** — enfia num beco e não sabe voltar.
+→ A lição: em grade **não se ESCOLHE um caminho, se ESPALHA por todos**.
+   A pergunta não é *"por onde eu vou?"*, é **"quais células eu ALCANÇO?"**
+→ É o mesmo mecanismo do `sort` que matou o D1: **o repertório dispara antes
+   da leitura terminar.** Ter ferramentas é bom E perigoso.
+
+✅ **AS 2 MELHORES PERGUNTAS QUE ELE JÁ FEZ** (valem mais que os 8 exercícios):
+1. *"Varrer 1.000.001 posições no final não me parece eficiente"* (C8) —
+   **pegou um erro REAL**: varrer o vetor de flags é lento **E** dá a ordem
+   ERRADA (crescente, não de aparição). Questionou o custo ANTES de codar.
+2. *"Se eu imprimo dentro do laço, a saída não sai picotada?"* (C8) — revelou
+   confusão entre **eco do terminal** × **saída do programa**. Ensinar sempre:
+   testar com `printf "..." | ./a`, **nunca digitando**.
+
+📚 **REENSINADO DO ZERO (ele pediu — "não me lembro de NADA de matriz"):**
+- `vector<vector<long long>> m(l, vector<long long>(c, 0))` — ler da DIREITA
+  pra ESQUERDA: `vector<T>(c,0)` **é uma linha**; `m(l, <linha>)` faz `l` cópias.
+- `m.size()` = **LINHAS** · `m[0].size()` = **COLUNAS** · `m[i][j]` = **[linha][coluna]**
+- Erros dele: `vector<A,B>` (o 2º param é o ALOCADOR, não o tipo interno!) e
+  `vector<vector<long>>` + `vector<long long>` (tipos têm que CASAR).
+- `queue`: `push`/`front`/`pop`/`empty`. **`front()` OLHA, `pop()` REMOVE** —
+  são separados! `int x = fila.pop()` **não compila**. Warning `nodiscard`.
+- **`switch` NÃO aceita string** (só tipos inteiros) → `if/else if`.
+  E `char[7]` é jeito C — em C++: `string` (cresce sozinha, `==` compara conteúdo).
+- **`endl` força FLUSH** (lento!) → em competitiva, sempre `"\n"`.
+
 DIA DOIS PONTEIROS — PARTE 2 (2026-07-13) — **10/10 AC** 🏆
 `revisoes/2026-07-13_dois_ponteiros_B1-B8.cpp` (B1-B8) + `08-dois-ponteiros/teoria_dois_ponteiros_e_janela.cpp` (D1-D2).
 Recall (6 perguntas): 3🟢 (índice×valor, busca binária, **prefix sum — melhor
@@ -560,6 +644,37 @@ Atualizar o contador a cada vez que o aluno usa o conceito num problema.
 | fórmula fechada O(1) em vez de laço (Gauss; limites 2e9 → laço = TLE) | 1 | B4 |
 | swap 3 linhas (`temp` PRECISA aparecer à direita) 🟢 | 2 | A6, B5 |
 | guloso: parar cedo (`else break`) quando ordenado e não cabe mais 🟢 | 1 | B7 |
+| **JANELA DESLIZANTE** 🔴 (07-14: sinal INVERTIDO → crash) | 2 | D1, C1 |
+| ↳ verbalizar ANTES: *"quando encolho?"* → **quando ESTOUROU** (`soma > t`) | 1 | C1 (bug real) |
+| **DOIS PONTEIROS: contar em BLOCO** (`cont += dir-esq`) | 1 | C2 |
+| ↳ **UM ponteiro por vez!** (`dir--` fora do `else` = mata rápido demais) 🔴 | 1 | C2 (bug real) |
+| ↳ contador de PARES estoura int (n²/2 ≈ 5e9) → `long long cont` | 1 | C2 |
+| **busca binária / `lower_bound`** 🔴🔴 **REGREDIU em 24h!** | 4 | busca, A7, B1, C3 |
+| ↳ `hi=meio-1` (NÃO `hi--`: vira O(N), 7,2s = TLE!) · `while(esq<=dir)` · sentinela `-1` · SEM `break` (1ª ocorrência) | — | C3 (os 4 bugs de B1/B3 VOLTARAM) |
+| **MATRIZ 2D** `vector<vector<T>> m(l, vector<T>(c,0))` 🔴 (reensinado do zero) | 3 | M2, C5, C6 |
+| ↳ `m.size()`=LINHAS · `m[0].size()`=COLUNAS · `m[i][j]`=[linha][coluna] | 2 | C5, C6 |
+| ↳ ⚠️ `vector<A,B>`: o 2º param é o ALOCADOR, não o tipo interno! | 1 | C5 (bug real) |
+| **VALOR e POSIÇÃO andam JUNTAS** (mesmo `if`, sem condição extra) 🔴 | 3 | B3, B5, C5 (bug real 2x) |
+| ↳ máximo: `<` estrito já dá a 1ª ocorrência de GRAÇA (empate não dispara) | 1 | C5 |
+| ↳ **sentinela × 1º elemento**: se SEMPRE há resposta, inicialize com o 1º (e a POSIÇÃO dele!) — não com `INT_MAX` | 1 | C5 (bug real) |
+| **OS 4 VIZINHOS** (`dl[4]={-1,1,0,0}`, `dc[4]={0,0,-1,1}`) + checar limites 🟢 | 1 | C6 (AC de primeira!) |
+| **`queue`** (FIFO): `push`/`front`/`pop`/`empty` | 1 | C7 |
+| ↳ **`front()` OLHA, `pop()` REMOVE** — separados! `int x=fila.pop()` NÃO compila | 1 | C7 (warning `nodiscard`) |
+| ↳ `front`/`pop` só com `!empty()` (mesma regra da `stack`) 🟢 | 1 | C7 |
+| **VETOR DE VISITADOS O(1)** (`vector<bool> visto(MAX)`; o VALOR é o ÍNDICE) 🟢 | 1 | C8 (AC de primeira!) |
+| ↳ **é o que impede o BFS de girar em círculos** — sem ele, NÃO TERMINA | 1 | C8 |
+| ↳ NUNCA varrer o vetor de flags! Imprimir NA HORA = ordem de aparição de graça | 1 | C8 (ele pegou sozinho ✅) |
+| **`switch` NÃO aceita string!** (só tipos inteiros) → `if/else if` | 1 | C7 |
+| **`endl` força FLUSH** (lento) → em competitiva sempre `"\n"` | 1 | C7 |
+| eco do TERMINAL ≠ saída do PROGRAMA (testar com `printf ... \| ./a`) | 1 | C8 |
+| `=` vs `+=` (atribuir × acumular; o `-Wall` NÃO pega) 🔴 | 1 | C4 (bug real) |
+| **PADRÃO dl/dc** (`dl[4]/dc[4]` casados pelo k; `ni=i+dl[k]`) | 1 | D8 (15/07) |
+| ↳ **`dl[k]` é DESLOCAMENTO, `ni` é POSIÇÃO** — só posição indexa a matriz 🔴 | 1 | D8 (bug real) |
+| ↳ teste de existência ABRAÇA o acesso (if(existe){ acessa }) 🟢 | 2 | C6, D8 |
+| ↳ vizinho inexistente é IGNORADO (1x1 sem vizinhos É pico) | 1 | D8 |
+| **flag booleana "sobreviveu a TODOS?"** → perguntar DEPOIS do laço fechar 🔴 | 1 | D8 (bug real: pico++ dentro do k, 1x1 deu 4) |
+| MATRIZ 2D (4ª rep) + varrer com pergunta por célula | 4 | M2, C5, C6, D8 |
+| `<=` derruba a flag no EMPATE ("estritamente maior") — de primeira! 🟢 | 1 | D8 |
 
 ⚠️ ATENÇÃO ESPECIAL (pedido do aluno em 2026-06-30): ele quer FIXAR por
 repetição espaçada os "modelos de for" — blocos sem chaves, for-range, e o
