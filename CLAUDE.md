@@ -282,9 +282,262 @@ NUNCA tratar isso como fraqueza — é lacuna de base, e ele está agindo certo.
 ⚠️ PEDIDO ORIGINAL (2026-07-04): "entender BITS/binário" + "algoritmo GULOSO".
 GULOSO já foi feito (módulo 5.6, 🟢). BITS pausado (acima).
 
-DIA BUSCA BINÁRIA D1-D8 (2026-07-15/16) — **SÓ O D8 FOI JULGADO**
-`revisoes/2026-07-15_buscabinaria_D1-D8.cpp`
-⚠️ **D1–D7 estão escritos no arquivo mas NÃO julgados — julgar na próxima sessão.**
+## 🏆 GRAFOS 1 (BFS) FECHADO + INÍCIO DO TREINO DE SELETIVA (2026-07-24)
+
+**A META DE JULHO FOI BATIDA:** busca binária ✅ · guloso ✅ · **grafos 1 ✅**.
+Os 3 alvos que o aluno definiu estão completos.
+
+**BFS — `revisao-final/2026-07-21_estruturas_S8_bfs.cpp` (S8) — ✅ AC (3 rodadas)**
+Validado: 400 casos vs BFS de referência + 1000×1000 (1 milhão de células) em
+0,19s. Ensinado com exemplo mínimo rodando antes (as 5 peças que ele já tinha:
+matriz, 4 vizinhos, dl/dc, queue, visitados — as 2 últimas AC de primeira em
+14/07). O exemplo deu 9 e provou a lição do recall: 2 células PARECEM bloqueadas
+mas são alcançáveis contornando por baixo — o desvio que o guloso nunca faz.
+As 3 rodadas foram C++, não BFS: (1) faltou `visto[ni][nj]=true` → LOOP INFINITO
+(ele viu na prática o que a teoria dizia) + `livre++` duplicado; (2) `visto[ni,nj]`
+(operador vírgula ≠ indexação de matriz); (3) `visto[ni][nj] == true` (`=` vs `==`,
+4ª ocorrência — o `-Wall` disse "value computed is not used", a assinatura do bug).
+🎓 Padrão a lembrar: **"value computed is not used" numa linha com `==` = era `=`**.
+
+**SELETIVA UFMG — pasta `seletiva/` (prova em 07/08/2026)**
+A UFMG não publica os problemas das seletivas; usei a **Seletiva UnB 2025** (real,
+mesmo formato ICPC). Formato: 5h, times de 3, 1 PC, 8+ problemas, material impresso
+permitido. Fontes no `seletiva/README.md`.
+- **A2 Fornada de Pão de Queijo — ✅ AC (2 rodadas, AMBAS de saída).** Substituto
+  que EU escrevi. A lógica (3 faixas, contar, ler até EOF, `long long`) saiu de
+  PRIMEIRA. Os 2 WA foram: strings cortadas (`PERFEITO` vs `PERFEITO: pode
+  servir.`) e depois **um ponto final faltando**. É o 🔴 de saída provando-se de
+  novo, num problema cujo enunciado dizia "saída exata" em negrito.
+  ⚠️ O `double` (`meta*1.08`) dele PASSOU 20 mil casos de borda — registrei que
+  funciona; a recomendação de usar inteiro é por hábito/escala, não porque
+  estava errado. Justiça é justiça.
+
+🔴🔴 **ERRO GRAVE MEU (2026-07-24) — transcrevi o problema A errado.**
+O `pdftotext` achatou as 2 colunas do PDF numa coluna só (`50 50 60 62 63 64`),
+eu li como "meta 50, 5 voltas", **inventei uma armadilha que não existia** no
+enunciado, e julguei o código CERTO do aluno como errado. Ele "corrigiu" para o
+lado errado (`meta = x`) por causa do meu gabarito quebrado. Corrigi lendo as
+COORDENADAS do PDF (eram 2 casos de teste). O problema A original virou material
+de leitura; escrevi o A2 como substituto (e VALIDEI o gabarito antes de entregar).
+→ **A lição, que o aluno já aplica melhor que eu (13/07, achou 2 erros meus):**
+  quando o exemplo não fecha com nenhuma interpretação razoável, a hipótese
+  mais provável é "eu li errado", não "o problema é genial". Voltar à FONTE.
+
+🎓 **ENSINADO EM 24/07 (ele perguntou):**
+- **BFS do zero** (grafo = nós + ligações; grade JÁ é um grafo; `dl/dc` É a
+  lista de vizinhos). Uma fila só, criada uma vez, que cresce e encolhe.
+  Marcar visitado AO ENFILEIRAR (não ao desenfileirar) senão a célula entra
+  várias vezes. O `if(visto) continue` é o que FAZ TERMINAR.
+- **`max_element`**: `*max_element(b,e)` (o `*`! iterador→valor); posição de
+  graça com `it - v.begin()`. `accumulate(b,e,0LL)` — o `0LL` define o tipo da
+  conta. (Ele perguntou por curiosidade e APLICOU no E9 no dia seguinte.)
+
+## 🎯 REVISÃO FINAL — `revisao-final/` (criada 2026-07-21)
+
+Pasta nova, pedida pelo aluno: *"melhor ter tudo que vimos até aqui consolidado
+do que simplesmente pular para grafos sem consolidar tudo."*
+Ver `revisao-final/README.md` para o racional completo.
+
+⚠️ **A META DE JULHO NÃO FOI CORTADA.** Grafos 1 segue sendo 1 dos 3 alvos.
+O calendário virou: **21–24/07 consolida · 25–31/07 grafos**, usando o BFS como
+**prova** da consolidação (ele reusa matriz + queue + visitados + dl/dc de uma
+vez só). O aluno escolheu isso conscientemente quando confrontado com o fato de
+que cortar grafos significaria terminar julho com 2/3 da meta que ele definiu.
+
+| Arquivo | O quê | Foco |
+|---------|-------|------|
+| `2026-07-21_padroes_E1-E10.cpp` | 10 exercícios | os **padrões de erro** recorrentes + ternário `?:` |
+| `2026-07-21_estruturas_S1-S8.cpp` | 8 **sem rótulo** | **escolher** e **usar** stack/queue/vector/matriz |
+
+🔑 **A DESCOBERTA QUE DESENHOU ESTES ARQUIVOS:** o diagnóstico D1–D7 (abaixo)
+mostrou que **o 🔴 do aluno não é um CONCEITO, é um PADRÃO de mecânica de laço**:
+1. **inicializar acumulador/sentinela** com valor errado (`min` com `melhor=0`)
+2. **a linha certa NO LUGAR ERRADO** (dentro × fora do laço)
+
+Já apareceu em **M1, C2, C4, C5, D8 e D4** — 6 vezes, em 6 conceitos diferentes.
+→ Perseguir o PADRÃO, não o conceito. Foi o que o arquivo `E` faz.
+
+DIA REVISÃO FINAL — ARQUIVO E (2026-07-21) — **9 AC de 9** 🏆
+`revisao-final/2026-07-21_padroes_E1-E10.cpp`
+Validação: **3.600 casos** de stress test vs força bruta, 0 falhas. Compilação
+limpa em todos. **5 dos 9 saíram de primeira.**
+
+| # | Conceito | Veredito | Rodadas |
+|---|----------|----------|---------|
+| E1 | **operador ternário `?:`** (conceito NOVO) | ✅ AC | **1** |
+| E2 | janela deslizante (o D4 em roupa nova) | ✅ AC | **1** |
+| E3 | valor + posição juntas | ✅ AC | 2 (formato da saída) |
+| E4 | flag depois do laço / solução O(N) | ✅ AC | **1** |
+| E5 | `=` vs `+=` + soma corrente | ✅ AC | **1** |
+| E6 | busca binária, ÚLTIMA ocorrência | ✅ AC | 2 (imprimiu vetor errado) |
+| E7 | dois ponteiros, contar em bloco | ✅ AC | 2 (`=` vs `+=`) |
+| E8 | guloso + botes | ✅ AC | 2 (faltou o caso `-1`) |
+| E9 | **busca binária NA RESPOSTA** | ✅ AC | 3 |
+| E10 | matriz + vizinhos | 📖 **solução dada** (ele pediu) | — |
+
+🏆 **OS 2 PADRÕES QUE O ARQUIVO CAÇAVA NÃO APARECERAM NENHUMA VEZ:**
+- **inicializar acumulador/sentinela** (tinha 6 ocorrências: M1,C2,C4,C5,D8,D4):
+  no E2 ele escreveu `melhor = n+1` **sozinho** — e ESCOLHEU isso sobre
+  `LLONG_MAX`, que era o óbvio. Absorveu a lição do recall no mesmo dia.
+- **linha certa no lugar errado**: E2 mediu dentro do `while`; E4 eliminou o
+  laço interno inteiro. Zero erros.
+
+🔴 **O 🔴 DELE MUDOU DE ENDEREÇO — agora é A SAÍDA e o CASO ESPECIAL.**
+Das 6 rodadas de correção: **2 de saída** (E3 formato, E6 vetor errado), **1 de
+caso especial** (E8 sem o `-1`), 3 de escopo/inicialização.
+**ZERO erros de algoritmo em 9 exercícios.** A modelagem nunca falhou.
+Histórico do padrão: B7, D1, C7, E3, E6, E8 — **6 ocorrências**.
+→ Prescrição (custa 15s): **rodar o exemplo do enunciado e comparar LINHA POR
+  LINHA antes de me chamar.** No E6 a saída tinha 7 linhas onde o exemplo pedia
+  4 — dava pra ver sem conferir valor nenhum.
+
+⚠️ **ELE DISSE que erro de saída "é desatenção, não falta de saber a matéria".**
+Resposta dada (manter esta posição): num juiz, WA de saída e WA de algoritmo
+valem **o mesmo: zero**. E "desatenção" não é diagnóstico — é rótulo que
+encerra a investigação. 6 ocorrências no mesmo lugar não é aleatório: a atenção
+dele DESLIGA quando a parte interessante (o algoritmo) acaba. Ele respondeu que
+"treino é treino, jogo é jogo" e que não testa por ser hobby — **respeitar a
+escolha, mas continuar apontando** (ele pediu por escrito que eu cobrasse). O
+argumento a usar: no treino se amarra a chuteira **para o gesto virar automático
+no jogo**; gesto que só recebe atenção quando importa nunca vira automático.
+
+⚠️ **ELE CHAMOU OS BUGS DO E9 DE "gramática de C" — corrigir esse vocabulário.**
+Gramática é o que o **compilador pega**. O código dele compilou limpo nas 3
+versões. Os 3 bugs eram: **escopo** (`porcoes` fora do `while` → acumulava entre
+rodadas), **domínio do problema** (`esq=0` → M=0 é divisão por zero) e
+**invariante quebrado** (`dir=vetor[n-1]` deixou de ser o máximo quando o `sort`
+sumiu numa edição). Nenhum é sintaxe. São erros que compilam, rodam e devolvem
+número errado **em silêncio** — a categoria mais cara.
+
+🎓 **E9 — A PROVA DE QUE "NÃO LEMBRO" ≠ NÃO SABER:**
+Ele abriu dizendo *"tenho certeza que está errado, não me lembro como resolver"*
+e **reconstruiu a técnica inteira de memória**, sem consultar o D7: espaço de
+busca, direção do descarte, guardar-e-continuar, `while(lo<=hi)`, `lo+(hi-lo)/2`.
+Tudo certo na PRIMEIRA escrita. As 3 rodadas foram mecânica.
+→ **O que evaporou em 6 dias foi a CONFIANÇA, não o conceito.** Usar isto como
+  evidência na próxima vez que ele disser "não lembro de nada".
+
+🎓 **E10 — ELE DISSE "NÃO VOU CONSEGUIR" COM 80% DA SOLUÇÃO JÁ ESCRITA.**
+Estavam CERTOS no arquivo dele: `vector<vector<long long>>`, `dl[4]`/`dc[4]`,
+`ni = i+dl[k]`, e o teste de limites completo. Faltou declarar `ehpico` e
+adaptar a comparação — porque ele **colou o miolo do D8** (pico local) num
+problema que faz OUTRA pergunta.
+**A lição (está escrita no `E10_otimo` do arquivo):**
+- **FLAG × CONTADOR**: D8 pergunta *"é maior que TODOS?"* → flag booleana (só
+  DERRUBA dentro do laço). E10 pergunta *"QUANTOS vizinhos são livres?"* →
+  **contador** (ACUMULA dentro). A natureza da pergunta escolhe a ferramenta.
+- **ACUMULA DENTRO, DECIDE FORA** — `livres++` no laço k, `corredores++` fora.
+- borda responde sozinha (`i==0||i==l-1||...`), sem olhar vizinho.
+- `continue` = early return na versão "pula esta iteração".
+⚠️ **O DIAGNÓSTICO REAL: não é falta de saber matriz/vizinhos** (ele domina os
+dois). É **o molde disparando ANTES da leitura terminar** — mesmo mecanismo do
+`sort` no CF 279B e do E10. Ele pediu mais exercícios deste tipo: montar
+exercícios que **parecem** um problema conhecido mas pedem outra coisa, para
+treinar a PARADA antes de codar: *"o que este enunciado pede de DIFERENTE do
+que eu já fiz?"*
+
+⚠️ **Ele me chamou para "verificar tudo" com o arquivo NÃO COMPILANDO** (o E10
+parcial tinha `ehpico` não declarado, e isso derrubava os 9 anteriores).
+Foi cobrado, conforme o combinado.
+
+✅ **CONCEITO NOVO DOMINADO: operador ternário `?:` (E1, AC de primeira).**
+No E1 ele usou `(valor > maior ? maior = valor : valor)` — funciona, mas é
+ternário fazendo trabalho de `if` (ramo morto no `else`). Ensinado: **`?:` serve
+para ESCOLHER UM VALOR** (`maior = a>b ? a : b`), **`if` serve para FAZER UMA
+AÇÃO**. Ele reusou o `?:` espontaneamente no E2 (`melhor != n+1 ? melhor : 0`).
+
+🎓 **TAMBÉM ENSINADO EM 21/07 (ele perguntou):**
+- **`max_element`**: `*max_element(v.begin(), v.end())` — devolve ITERADOR, o
+  `*` desreferencia. Posição de graça: `it - v.begin()`. Irmãos: `min_element`,
+  `accumulate(v.begin(), v.end(), 0LL)` ⚠️ (o `0LL` define o TIPO DA CONTA — com
+  `0` a soma acontece em int e estoura!), `count`. **Ele APLICOU no E9 no dia
+  seguinte** para trocar o `sort` O(N log N) por O(N) — e isso eliminou o
+  invariante que ele tinha quebrado. Correção virou escolha mais robusta.
+- **Sair de função `void`: `return;`** (sem valor). `break` só sai de LAÇO ou
+  `switch` — fora deles não compila. Em função `int`, `return valor;`.
+  Padrão **early return**: valida, trata o caso impossível, `return`, e o resto
+  da função fica plano. Ele já tinha usado no M4 (`if(!fin){...return;}`).
+- ⚠️ **NÃO nomear variável com nome de função da std** (ele usou `long long max`
+  no E8). Compilou por sorte (não chama `max()` na função); se chamasse, erro
+  incompreensível. Evitar `max`, `min`, `count`, `size`, `distance`.
+
+DIA DIAGNÓSTICO + RECALL (2026-07-21) — **D1–D7 julgados: 6 AC, 1 WA**
+Compilação **100% limpa** nos sete (o hábito dos warnings pegou — era 🔴 nº1).
+
+| # | Conceito | Veredito | Validação |
+|---|----------|----------|-----------|
+| D1 | busca binária clássica | ✅ AC | bordas N=1; N=Q=1e5 em 0,055s |
+| D2 | primeira ocorrência (sem `break`) | ✅ AC | o bug do C3 **não voltou** |
+| D3 | `lower_bound` de verdade | ✅ AC | 200 casos vs força bruta |
+| D4 | janela deslizante | ❌ **WA** | falhou no próprio exemplo |
+| D5 | dois ponteiros, contar em bloco | ✅ AC | 300 casos; `long long` segurou 4999950000 |
+| D6 | guloso + borda `<=` | ✅ AC | bordas exato/nada cabe |
+| D7 | **busca binária na RESPOSTA** (conceito novo!) | ✅ AC | 200 casos vs força bruta |
+
+🟢🟢 **BUSCA BINÁRIA SAIU DO VERMELHO.** Em 14/07 os 4 bugs voltaram todos em
+24h. Em 15/07 ele escreveu 4 variantes diferentes (D1, D2, D3, D7 — incluindo
+**busca binária na resposta, que era conceito NOVO**) e as 4 passaram, sozinho,
+sem dica. Pelas regras dele: D2 e D3 são 2 acertos de primeira em exercícios
+diferentes → **conceito EM ESPERA**, revisitar em ~2 semanas.
+
+❌ **O único WA (D4), 2 bugs, ambos do PADRÃO:**
+1. `long long melhor = 0;` + `min(melhor, ...)` → **min com 0 é sempre 0**, a
+   resposta nunca sai do lugar. Irmão do "máximo não pode começar em 0" (M1).
+2. a linha que MEDE ficou **fora** do `while` que encolhe → mede janela que já
+   não vale. Mesmo "linha certa no lugar errado" do C2 e do D8.
+✅ O que ele **acertou** e eu esperava que falhasse: `while(soma >= t)` — o
+sinal da janela, que era o 🔴 do C1. Não errou.
+→ D4 fica marcado WA de propósito; janela nova no E2 para valer como "de primeira".
+
+🔴 **O ERRO MAIS VALIOSO DO RECALL — LIFO/FIFO INVERTIDOS (pergunta 5):**
+Ele disse *"stack é FIFO"* e **trocou as duas estruturas** na aplicação.
+Os **conceitos** ele acertou (soube que "ordem de chegada" é FIFO e "desfazer" é
+LIFO) — só os **NOMES** estavam trocados.
+⚠️ Perigoso porque num enunciado de prova está escrito "pilha"/"fila", não
+"LIFO"/"FIFO". Vocabulário errado → escolhe a estrutura errada **mesmo
+entendendo o problema**. Gerou o arquivo `S` inteiro (8 sem rótulo, ele declara
+`// ESCOLHA:` a estrutura + a palavra do enunciado que o fez escolher).
+Mnemônico ensinado: **pilha de pratos** (mexe só no topo) × **fila do banco**
+(não fura fila).
+
+🎓 **REENSINADO NO RECALL DE 21/07:**
+- **Sentinela não precisa ser o máximo do tipo — precisa ser IMPOSSÍVEL no
+  problema.** `melhor = n+1` é melhor que `LLONG_MAX` (não estoura se você somar
+  ou subtrair depois). Ele perguntou "é `LONG_MAX`?" → é **`LLONG_MAX`** (2 L).
+- **Por que o ternário `?:` existe** (ele perguntou "posso pôr if dentro do
+  cout?"): **`if` é COMANDO** (faz algo, não vale nada) · **`?:` é EXPRESSÃO**
+  (TEM um valor) → cabe dentro de `cout`, à direita de `=`, como argumento.
+  Por isso `cout << if(...)` não compila. **É a única razão de ele existir.**
+- **`stack` usa `top()`, `queue` usa `front()`** — ele só sabia o `front()`.
+  Nas duas: `pop()` é `void` (REMOVE, não devolve) → 2 passos separados.
+- **Janela: os 2 casos são o MESMO erro por 2 ângulos.** MAIOR com soma ≤ T →
+  `while(soma > T)` (estourou → conserta, mede FORA). MENOR com soma ≥ T →
+  `while(soma >= T)` (já serve → mede DENTRO, depois encolhe).
+- **Busca binária na resposta exige MONOTONICIDADE** (pergunta 9, ele não
+  lembrava): "dá pra fazer com X?" tem que ser sim-sim-sim-NÃO-NÃO, sem
+  alternar. **A monotonicidade faz o papel da ordenação.** Gatilho no enunciado:
+  *"o MAIOR X tal que ainda dá"* / *"o MENOR X tal que já dá"* + testar um X é fácil.
+  Ele **busca no ESPAÇO DE RESPOSTAS**, não num vetor.
+
+🔴 **PERGUNTA 10 — O ALUNO PEDIU EXPLICITAMENTE PARA REGISTRAR E REVISITAR:**
+*"Eu não me lembro, refresque minha memória e coloque no .md para ser revisitado."*
+É a **2ª vez** que ele não sabe responder isto (errou igual em 14/07).
+**A pergunta:** labirinto em grade, existe caminho da entrada à saída?
+**O erro dele (14/07):** *"olho ao redor e escolho o caminho que leva ao alvo"*
+→ isso é **busca gulosa** e **QUEBRA**: entra num corredor que aponta para o
+alvo, ele termina em beco, e o guloso **não guarda por onde veio** — não sabe
+voltar nem quais bifurcações deixou para trás. Guloso serve quando a escolha
+local nunca precisa ser desfeita; **em labirinto, precisa.**
+**A correção — a frase a repetir até virar reflexo:**
+> **Você não ESCOLHE um caminho. Você se ESPALHA por todos.**
+> A pergunta não é *"por onde eu vou?"* — é **"quais células eu ALCANÇO?"**
+⚠️ **COBRAR ESTA PERGUNTA EM TODO RECALL até ele responder sozinho 2x seguidas.**
+O exemplo do S8 foi construído para provar isso: 2 células **parecem**
+bloqueadas mas são alcançáveis **contornando por baixo** — o desvio que o
+guloso nunca faz.
+
+DIA BUSCA BINÁRIA D1-D8 (2026-07-15/16) — **julgado em 21/07 (ver acima)**
+`revisoes/2026-07-15_buscabinaria_D1-D8.cpp` — D1–D7: 6 AC, 1 WA (D4).
 
 | # | Veredito | Rodadas | O que travou |
 |---|----------|---------|--------------|
@@ -675,6 +928,60 @@ Atualizar o contador a cada vez que o aluno usa o conceito num problema.
 | **flag booleana "sobreviveu a TODOS?"** → perguntar DEPOIS do laço fechar 🔴 | 1 | D8 (bug real: pico++ dentro do k, 1x1 deu 4) |
 | MATRIZ 2D (4ª rep) + varrer com pergunta por célula | 4 | M2, C5, C6, D8 |
 | `<=` derruba a flag no EMPATE ("estritamente maior") — de primeira! 🟢 | 1 | D8 |
+| **busca binária** (D1,D2,D3,D7 AC de primeira em 15/07) 🟢 **EM ESPERA** | 8 | busca, A7, B1, C3, D1, D2, D3, D7 |
+| ↳ **BUSCA BINÁRIA NA RESPOSTA** (monotonicidade faz o papel da ordenação) | 1 | D7 (AC, conceito novo!) |
+| ↳ gatilho: "o MAIOR X que ainda dá" / "o MENOR X que já dá" + testar X é fácil | 1 | D7 |
+| **PADRÃO 🔴 nº1: inicializar acumulador/sentinela** (`min` com 0 = sempre 0) | 6 | M1, C2, C4, C5, D8, D4 |
+| ↳ sentinela = valor **IMPOSSÍVEL no problema**, não o máximo do tipo (`n+1` > `LLONG_MAX`) | 1 | D4 (reensinado) |
+| ↳ `LLONG_MAX` (2 L), não `LONG_MAX` | 1 | recall 21/07 |
+| **PADRÃO 🔴 nº2: linha certa NO LUGAR ERRADO** (dentro × fora do laço) | 4 | C2, D8, D4, C5 |
+| **JANELA DESLIZANTE** 🔴 (D4 WA: 2 bugs, mas acertou o SINAL) | 3 | D1, C1, D4 |
+| ↳ MAIOR soma ≤ T → `while(soma>T)`, mede FORA · MENOR soma ≥ T → `while(soma>=T)`, mede DENTRO | 1 | D4 |
+| **LIFO × FIFO: os NOMES** 🔴🔴 (inverteu os dois no recall!) | 1 | recall 21/07 |
+| ↳ `stack`=pilha=LIFO=**pilha de pratos** · `queue`=fila=FIFO=**fila do banco** | 1 | recall 21/07 |
+| ↳ `stack.top()` × `queue.front()` (ele só sabia o `front`) | 1 | recall 21/07 |
+| **OPERADOR TERNÁRIO `?:`** ⚪ NOVO — nunca apareceu no repo até 21/07 | 0 | E1 (a fazer) |
+| ↳ **`if` é COMANDO** (não vale nada) · **`?:` é EXPRESSÃO** (TEM valor) → cabe no `cout` | 1 | recall 21/07 |
+| **"não ESCOLHE caminho, ESPALHA por todos"** 🔴🔴 (2ª vez que não lembra!) | 2 | recall 14/07, recall 21/07 |
+| ↳ guloso QUEBRA em labirinto: entra em beco e não sabe voltar | 2 | recall 14/07, 21/07 |
+| ↳ a pergunta é **"quais células eu ALCANÇO?"**, não "por onde eu vou?" | 2 | recall 14/07, 21/07 |
+| compilação limpa (`-Wall`) 🟢 **SUBIU** — 7/7 em 15/07 + 9/9 em 21/07 | 16 | +D1..D7, +E1..E9 |
+| **OPERADOR TERNÁRIO `?:`** 🟢 AC de primeira (E1) + reusado sozinho (E2) | 2 | E1, E2 |
+| ↳ **`?:` ESCOLHE UM VALOR · `if` FAZ UMA AÇÃO** (ramo morto = sinal de erro) | 1 | E1 |
+| **JANELA DESLIZANTE** 🟡 **1º acerto de primeira** (E2) — falta +1 p/ espera | 4 | D1, C1, D4(WA), **E2 ✅1ª** |
+| ↳ `melhor = n+1` (sentinela IMPOSSÍVEL, não `LLONG_MAX`) — ele ESCOLHEU 🟢 | 1 | E2 |
+| **busca binária na RESPOSTA** 🔴 (AC no D7 e no E9, mas ESQUECEU em 6 dias) | 2 | D7, E9 |
+| ↳ ⚠️ ver memória `busca-binaria-na-resposta-revisitar` — revisitar SEMPRE | — | — |
+| **dois ponteiros contar em bloco** 🟢 (E7 AC; `dir-esq`, um ponteiro por vez) | 3 | C2, D5, E7 |
+| **`=` vs `+=` (atribuir × acumular)** 🔴 VOLTOU no E7 (o `-Wall` NÃO pega) | 3 | C4, E5(ok), E7(bug) |
+| ↳ espelho: variável de rodada declarada FORA do laço não zera (E9 `porcoes`) | 1 | E9 (bug real) |
+| **SAÍDA: formato / vetor errado** 🔴🔴 **o novo 🔴 nº1** — 6 ocorrências | 6 | B7, D1, C7, E3, E6, E8 |
+| ↳ prescrição: rodar o exemplo e comparar LINHA POR LINHA (15 segundos) | — | — |
+| **caso especial do enunciado não implementado** 🔴 (o `-1` do E8) | 1 | E8 (bug real) |
+| **INVARIANTE QUEBRADO NA EDIÇÃO** 🔴 (`dir=vetor[n-1]` sem o `sort`) — novo! | 1 | E9 (bug real) |
+| **`max_element`** `*max_element(b,e)` (o `*`! iterador → valor) 🟢 aplicou sozinho | 1 | E9 |
+| ↳ `accumulate(b,e,0LL)` ⚠️ o `0LL` define o TIPO DA CONTA (com `0` estoura!) | 1 | ensinado 21/07 |
+| ↳ posição do máximo de graça: `it - v.begin()` (valor e posição NÃO descolam) | 1 | ensinado 21/07 |
+| **`return;` sai de função `void`** (`break` só sai de LAÇO/`switch`!) | 2 | M4, E8 |
+| ↳ **early return**: trata o caso impossível e sai → resto da função fica plano | 1 | E8 |
+| ⚠️ NÃO nomear variável como função da std (`long long max` no E8) | 1 | E8 |
+| **FLAG × CONTADOR** — "é TODOS?" (flag, derruba) × "QUANTOS?" (contador, soma) | 1 | E10 (travou aqui) |
+| ↳ **ACUMULA DENTRO do laço, DECIDE FORA** (o padrão do arquivo inteiro) 🟢 | 3 | E2, E4, E10 |
+| **🔴 o MOLDE dispara antes da LEITURA terminar** (D8→E10; sort→CF 279B) | 3 | D1, D2(13/07), E10 |
+| ↳ a pergunta que salva: *"o que este enunciado pede de DIFERENTE?"* | — | — |
+| valor + posição juntas no MESMO `if` 🟢 (E3 AC, o 🔴 do C5 não voltou) | 4 | B3, B5, C5, E3 |
+| solução O(N) sem laço interno (guardar só 1 número do passado) 🟢 | 1 | E4 |
+| **BFS / busca em largura** (grade = grafo; fila + visitados) ✅ | 1 | S8 (grafos 1 FECHADO) |
+| ↳ marcar visitado AO ENFILEIRAR (não ao desenfileirar) 🔴 | 1 | S8 (bug: loop infinito) |
+| ↳ `if(visto) continue` é o que FAZ O BFS TERMINAR | 1 | S8 |
+| ↳ **`[ni, nj]` NÃO indexa matriz** (operador vírgula!) → `[ni][nj]` 🔴 | 1 | S8 (bug real) |
+| **`=` vs `==`** (o `-Wall`: "value computed is not used" = era `=`) 🔴 | 4 | baralho, aquec-G, contarParaBaixo, S8 |
+| **SAÍDA exata: strings/pontuação** 🔴🔴 (o novo 🔴 nº1) | 8 | B7,D1,C7,E3,E6,E8,A2×2 |
+| ↳ prescrição: `diff` contra o exemplo antes de submeter (15s) | — | — |
+| ler quantidade indeterminada até EOF `while(cin>>x)` | 2 | M4, A2 |
+| classificar em faixas com borda ESTRITA ("mais que X%") | 1 | A2 |
+| ⚠️ `double` em comparação de borda: passa até ~1e15, arrisca acima | 1 | A2 (passou 20k casos) |
+| **`max_element`/`accumulate`** (`*` desreferencia; `0LL` define o tipo) | 1 | ensinado 24/07, aplicado no E9 |
 
 ⚠️ ATENÇÃO ESPECIAL (pedido do aluno em 2026-06-30): ele quer FIXAR por
 repetição espaçada os "modelos de for" — blocos sem chaves, for-range, e o

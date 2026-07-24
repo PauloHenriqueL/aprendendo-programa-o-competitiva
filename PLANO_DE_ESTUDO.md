@@ -116,11 +116,97 @@ primeira, sem dica, em pelo menos 2 exercícios diferentes). Se não estiver,
 ### 🔥 PRIORIDADE MÁXIMA DA SEMANA
 Os **3 que ele fechou em 2-3 rodadas** (não de primeira) em 14/07 — martelar
 até saírem **DE PRIMEIRA**:
-1. **busca binária / `lower_bound`** (os 4 bugs voltaram 1 dia depois!)
-2. **janela deslizante** (sinal do `while` invertido → crash)
-3. **dois ponteiros contando em bloco** (moveu os 2 ponteiros no mesmo passo)
+1. ~~**busca binária / `lower_bound`**~~ 🟢 **SAIU DO VERMELHO em 21/07** —
+   D1, D2, D3 e D7 AC de primeira (D7 era conceito NOVO). **EM ESPERA**,
+   revisitar ~04/08.
+2. **janela deslizante** 🔴 (D4 = WA. Mas ele acertou o SINAL — os 2 bugs
+   foram do PADRÃO, não do conceito. Refazer no E2.)
+3. ~~**dois ponteiros contando em bloco**~~ 🟢 D5 AC, 300 casos vs força bruta.
 
-## ⬜ SEMANA 4 — 21/07 a 27/07: **GRAFOS parte 1 — BFS/DFS**
+⚠️ **A LISTA ESTÁ DESATUALIZADA COMO "CONCEITOS" — o 🔴 real é OUTRO.**
+O diagnóstico de 21/07 mostrou que o que falha não é conceito, é **PADRÃO**:
+1. 🔴🔴 **inicializar acumulador/sentinela** (6 ocorrências: M1,C2,C4,C5,D8,D4)
+2. 🔴🔴 **linha certa no lugar errado** (dentro × fora do laço: C2,D8,D4,C5)
+3. 🔴🔴 **LIFO × FIFO — os NOMES** (inverteu os dois no recall de 21/07)
+4. 🔴🔴 **"não escolhe caminho, ESPALHA"** (2ª vez que não lembra — 14 e 21/07)
+→ **Perseguir o PADRÃO, não o conceito.** É o que `revisao-final/` faz.
+
+## ✅ META DE JULHO BATIDA (2026-07-24)
+
+**busca binária ✅ · guloso ✅ · grafos 1 (BFS) ✅** — os 3 alvos que o aluno
+definiu para julho estão completos. O BFS (`revisao-final/..._S8_bfs.cpp`) foi
+resolvido e validado (400 casos + 1000×1000 em 0,19s).
+
+> 🛑 **O ALUNO ENCERROU O ESTUDO GUIADO AQUI (2026-07-24).** Vai continuar
+> sozinho pelo Codeforces. Este arquivo registra até onde chegamos juntos.
+> A pasta `seletiva/` guarda o início do treino para a Seletiva Interna UFMG
+> (07/08/2026) e as fontes de provas reais para retomar quando quiser.
+
+---
+
+## 🔄 SEMANA 4 — REPARTIDA EM DUAS (decidido 2026-07-21)
+
+⚠️ **MUDANÇA DE CALENDÁRIO, NÃO DE META.** O aluno pediu (21/07):
+*"melhor ter tudo que vimos até aqui consolidado do que simplesmente pular para
+grafos sem consolidar tudo."*
+
+**A meta NÃO foi cortada.** Confrontado com o fato de que grafos 1 é **1 dos 3
+alvos que ele mesmo definiu** — e que cortá-lo significaria fechar julho com 2/3
+da própria meta — ele escolheu **repartir**, não abandonar:
+
+| Período | O quê |
+|---------|-------|
+| **21–24/07** | **CONSOLIDAÇÃO** — `revisao-final/` (18 exercícios) |
+| **25–31/07** | **GRAFOS/BFS**, usando o BFS como **PROVA** da consolidação |
+
+🔑 **Por que o BFS É a consolidação, e não uma interrupção dela:** ele reusa
+**matriz + queue + visitados + dl/dc AO MESMO TEMPO**. Não dá pra fazer BFS sem
+ter as 4 firmes. É o teste mais honesto de "consolidei?" que existe.
+
+### 21–24/07 — CONSOLIDAÇÃO (`revisao-final/`)
+- [x] Julgar D1–D7 (dívida de 15/07) → **6 AC, 1 WA**. Ver CLAUDE.md.
+- [x] **`2026-07-21_padroes_E1-E10.cpp` → 9 AC de 9** (5 de primeira!)
+      3.600 casos de stress test, 0 falhas. Compilação limpa em todos.
+      E10: solução dada a pedido dele (`E10_otimo` está no arquivo).
+- [x] **S8 (BFS) → ✅ AC** (`revisao-final/2026-07-21_estruturas_S8_bfs.cpp`).
+      Grafos parte 1 fechado. S1–S7 (estruturas) propostos mas não resolvidos,
+      removidos ao encerrar.
+
+#### 📌 O QUE MUDOU COM O RESULTADO DO ARQUIVO E (ler antes da próxima sessão)
+
+**Os 2 padrões que motivaram o arquivo NÃO apareceram nenhuma vez.** Ele
+escreveu `melhor = n+1` sozinho (sentinela impossível) e pôs a medição dentro
+do `while`. Os 🔴 nº1 e nº2 do painel estão mortos.
+
+**O 🔴 novo é A SAÍDA** (6 ocorrências: B7, D1, C7, E3, E6, E8) e o **caso
+especial do enunciado não implementado** (E8). **ZERO erros de algoritmo em 9
+exercícios** — a modelagem nunca falhou.
+→ Prescrição de 15s: rodar o exemplo do enunciado e comparar **linha por linha**.
+
+**⚠️ Ele considera erro de saída "desatenção, não falta de saber a matéria", e
+disse que não testa porque "treino é treino, jogo é jogo".** Respeitar a
+escolha, mas **continuar apontando** (ele pediu por escrito que eu cobrasse).
+
+**🔴 O ALVO PEDAGÓGICO DA PRÓXIMA SESSÃO — pedido dele após o E10:**
+*"preciso de mais exercícios como esse para aprender a desenvolver essa questão."*
+⚠️ Mas o diagnóstico é OUTRO: ele **não** precisa aprender matriz/vizinhos (já
+domina — escreveu 80% do E10 certo). Ele travou porque **colou o molde do D8**
+num problema que fazia outra pergunta (flag × contador).
+→ **Montar exercícios que PARECEM um problema conhecido mas pedem OUTRA COISA**,
+  para treinar a PARADA antes de codar: *"o que este enunciado pede de
+  DIFERENTE do que eu já fiz?"* É o mesmo mecanismo do `sort` no CF 279B.
+
+**🔴 busca binária NA RESPOSTA: revisitar SEMPRE.** AC de primeira no D7
+(15/07), e em 21/07 não lembrava nem do exercício. Reconstruiu tudo de memória
+no E9 (3 rodadas, só mecânica) — **o que evaporou foi a confiança, não o
+conceito**. Ver a memória `busca-binaria-na-resposta-revisitar`.
+⚠️ Pedido dele: **NÃO mostrar a solução antiga** (D7) quando ele estiver
+tentando lembrar. Deixar lutar primeiro.
+
+**Janela deslizante: 1º acerto de primeira (E2).** Falta **mais um**, em
+exercício diferente, para entrar EM ESPERA pela regra dele.
+
+### 25–31/07 — **GRAFOS parte 1 — BFS/DFS**
 
 O ÚNICO conceito novo do mês. (Adiado de propósito: ele precisa de matriz e
 fila firmes ANTES. O `revisoes/2026-07-14_revisao_C1-C8_janela_buscabin_matriz_fila.cpp` (C5-C8) já está
